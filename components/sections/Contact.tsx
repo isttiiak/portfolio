@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionReveal } from "@/components/fx/SectionReveal";
 import { Magnetic } from "@/components/fx/Magnetic";
-import { GithubIcon, LinkedinIcon, MailIcon, MapPinIcon } from "@/components/ui/icons";
+import { GithubIcon, LinkedinIcon, MailIcon, MapPinIcon, TelegramIcon } from "@/components/ui/icons";
 import { site } from "@/lib/data/site";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -92,6 +92,17 @@ export function Contact() {
                 <LinkedinIcon width={18} height={18} />
               </span>
               <span className="font-mono text-sm">linkedin.com/in/{site.handle}</span>
+            </a>
+            <a
+              href={site.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 text-cream transition-colors hover:text-amber"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember transition-colors group-hover:border-ember">
+                <TelegramIcon width={18} height={18} />
+              </span>
+              <span className="font-mono text-sm">t.me/mobs08 · {site.telegramHandle}</span>
             </a>
             <div className="flex items-center gap-4 text-stone">
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember">

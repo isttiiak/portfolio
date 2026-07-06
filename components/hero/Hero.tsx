@@ -7,7 +7,7 @@ import { Terminal } from "@/components/hero/Terminal";
 import { RoleTicker } from "@/components/hero/RoleTicker";
 import { Magnetic } from "@/components/fx/Magnetic";
 import { Orbs } from "@/components/fx/Orbs";
-import { ArrowDownIcon, GithubIcon, LinkedinIcon, MailIcon } from "@/components/ui/icons";
+import { ArrowDownIcon, GithubIcon, LinkedinIcon, MailIcon, TelegramIcon } from "@/components/ui/icons";
 import { site } from "@/lib/data/site";
 
 const nameLetters = site.name.split("");
@@ -105,6 +105,9 @@ export function Hero() {
               </a>
               <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-ember">
                 <LinkedinIcon />
+              </a>
+              <a href={site.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="transition-colors hover:text-ember">
+                <TelegramIcon />
               </a>
               <a href={`mailto:${site.email}`} aria-label="Email" className="transition-colors hover:text-ember">
                 <MailIcon />

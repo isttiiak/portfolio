@@ -44,3 +44,6 @@ next-env.d.ts
 # local source material (CVs) — never commit
 myinfo/
 .DS_Store
+
+# LaTeX build artifacts
+cv/build/

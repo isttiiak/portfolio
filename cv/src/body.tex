@@ -1,0 +1,165 @@
+% Shared CV body — included by istiak-islam-cv.tex (\photofalse)
+% and istiak-islam-cv-photo.tex (\phototrue).
+% ATS-friendly: single column, real text everywhere, standard fonts,
+% no tables for critical content, no headers/footers.
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage[margin=0.55in,top=0.5in,bottom=0.55in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{HTML}{C2410C}
+\definecolor{dark}{HTML}{1C1C1E}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\raggedright
+\raggedbottom
+
+% Section heading: bold small caps with a rule
+\titleformat{\section}{\large\bfseries\scshape\color{dark}}{}{0pt}{}[\vspace{-9pt}\rule{\textwidth}{0.6pt}]
+\titlespacing*{\section}{0pt}{11pt}{7pt}
+
+% Entry: {left bold title}{right date}
+\newcommand{\entry}[2]{\textbf{#1} \hfill {\small #2}\par}
+% Subline: {left italic}{right small}
+\newcommand{\subentry}[2]{\textit{#1} \hfill {\small #2}\par}
+
+\setlist[itemize]{nosep, topsep=2pt, leftmargin=1.15em, itemsep=2pt, label=\textbullet}
+
+\newcommand{\skillrow}[2]{\textbf{#1:} #2\par\vspace{2.5pt}}
+
+\begin{document}
+
+% ============================ HEADER ============================
+\ifphoto
+\begin{minipage}[c]{0.76\textwidth}
+  {\Huge\bfseries Istiak Islam}\par\vspace{3pt}
+  {\color{accent}\textbf{Software Engineer · Data Engineer}}\par\vspace{5pt}
+  {\small
+  Dhaka, Bangladesh \;·\; +880 1755 578878 \;·\; \href{mailto:isttiiak@gmail.com}{isttiiak@gmail.com}\\[1.5pt]
+  \href{https://isttiiak.vercel.app}{isttiiak.vercel.app} \;·\;
+  \href{https://github.com/isttiiak}{github.com/isttiiak} \;·\;
+  \href{https://www.linkedin.com/in/isttiiak}{linkedin.com/in/isttiiak}
+  }
+\end{minipage}\hfill
+\begin{minipage}[c]{0.2\textwidth}
+  \raggedleft
+  \includegraphics[width=3.0cm]{photo/istiak.jpg}
+\end{minipage}
+\else
+{\Huge\bfseries Istiak Islam}\par\vspace{3pt}
+{\color{accent}\textbf{Software Engineer · Data Engineer}}\par\vspace{5pt}
+{\small
+Dhaka, Bangladesh \;·\; +880 1755 578878 \;·\; \href{mailto:isttiiak@gmail.com}{isttiiak@gmail.com}\\[1.5pt]
+\href{https://isttiiak.vercel.app}{isttiiak.vercel.app} \;·\;
+\href{https://github.com/isttiiak}{github.com/isttiiak} \;·\;
+\href{https://www.linkedin.com/in/isttiiak}{linkedin.com/in/isttiiak}
+}
+\fi
+
+% ============================ SUMMARY ============================
+\section{Summary}
+Computer Science graduate (BRAC University) working across full-stack software engineering and data.
+Built and deployed \textbf{three production web applications} (React, TypeScript, Node.js, PostgreSQL, MongoDB)
+and an \textbf{end-to-end machine learning pipeline} (LightGBM, NLP, FastAPI) as capstone of a
+government-backed data science program. Undergraduate thesis applied Bayesian statistics and
+sentiment analysis to e-commerce rating systems. Seeking software engineering and data engineering roles.
+
+% ============================ SKILLS ============================
+\section{Technical Skills}
+\skillrow{Languages}{Python, SQL, TypeScript, JavaScript, Bash}
+\skillrow{Data Science \& ML}{Pandas, NumPy, Scikit-learn, LightGBM, XGBoost, SMOTE, hypothesis testing, Bayesian methods, time series (ARIMA, Prophet), NLP (TF-IDF), Matplotlib, Seaborn, Plotly}
+\skillrow{Web \& Backend}{React, Next.js, Node.js, Express, FastAPI, REST APIs, Tailwind CSS, TanStack Query, Zustand}
+\skillrow{Databases}{PostgreSQL, MySQL, MongoDB, Supabase, Firebase, SQL query optimization}
+\skillrow{Data Engineering \& DevOps}{Apache Spark, Hadoop, Airflow, Docker, Kubernetes (coursework), Git, CI/CD, Linux, Jupyter, LaTeX}
+
+% ============================ PROJECTS ============================
+\section{Projects}
+
+\entry{Mercari Price Suggestion — End-to-End ML Pipeline}{2026}
+\subentry{Python, Pandas, Scikit-learn, LightGBM, NLP, FastAPI \;·\; \href{https://github.com/isttiiak/mercari-price-suggestion}{GitHub}}{Capstone, ITS 507}
+\begin{itemize}
+  \item Built a complete regression pipeline predicting marketplace listing prices from title, description, category, brand, and condition on the Kaggle Mercari dataset (large-scale, sparse NLP features)
+  \item Achieved \textbf{RMSLE 0.465 and MAE \$10.44} with LightGBM — a \textbf{25.5\% improvement} over a Ridge regression baseline; kept the full feature matrix sparse end-to-end for laptop-scale training
+  \item Deployed the selected model behind a \textbf{FastAPI} endpoint with an inference-time preprocessing module that exactly mirrors the training pipeline, preventing train/serve skew
+\end{itemize}
+\vspace{5pt}
+
+\entry{FinTrack — AI-Powered Personal Finance App}{2025}
+\subentry{React 19, TypeScript, Supabase (PostgreSQL), TanStack, Groq AI \;·\; \href{https://fin-track-eight-blue.vercel.app}{live} \;·\; \href{https://github.com/isttiiak/FinTrack}{GitHub}}{Live in production}
+\begin{itemize}
+  \item Designed and shipped an open-source finance platform covering expense tracking, lent/debt ledger, and investment portfolio, self-hostable and built for the Bangladeshi context
+  \item Integrated \textbf{10 AI features} via the Groq API (smart categorization, anomaly detection, budget analysis, natural-language chat over user data) with compact pre-aggregated prompts for free-tier costs
+  \item Enforced per-user data isolation with PostgreSQL \textbf{Row Level Security}; added CSV import with column-mapping preview, full Excel/CSV export, and soft-delete
+\end{itemize}
+\vspace{5pt}
+
+\entry{Ihsan — Islamic Productivity Platform}{2025}
+\subentry{React, Node.js, Express, MongoDB, Firebase Auth \;·\; \href{https://ihsan-web-app-main.vercel.app}{live} \;·\; \href{https://github.com/isttiiak/ihsan-web-app}{GitHub}}{Live in production}
+\begin{itemize}
+  \item Built a full-stack habit platform (prayer, zikr, fasting, Quran tracking) with streaks, goals, and per-habit analytics dashboards; 19-test backend suite
+  \item Engineered timezone-correct daily buckets where the client's local civil date is authoritative — accurate local-midnight resets worldwide with zero user configuration
+  \item Optimized write-heavy counters with debounced client batching and atomic MongoDB operations (\texttt{\$inc}), eliminating lost updates; implemented lazy streak expiry requiring no cron infrastructure
+\end{itemize}
+\vspace{5pt}
+
+\entry{Adaptive Rating System for E-commerce — Undergraduate Thesis}{2024 — 2025}
+\subentry{Bayesian statistics, sentiment analysis, Chrome extension \;·\; \href{https://github.com/isttiiak/e-commerce-extension}{GitHub}}{Supervisor: Prof.\ Farida Chowdhury}
+\begin{itemize}
+  \item Designed a manipulation-resistant product rating algorithm combining \textbf{Bayesian averaging}, exponential time decay, and AI sentiment extraction from review text
+  \item Solely responsible for all data work: EDA, hypothesis testing, algorithm design, and statistical validation; contribution commended by supervisor for originality and statistical rigor
+  \item Shipped the algorithm as a Chrome extension that recomputes robust ratings directly on live e-commerce product pages
+\end{itemize}
+\vspace{5pt}
+
+\entry{Brain Stroke Classification}{2023}
+\subentry{Python, Scikit-learn, SMOTE \;·\; \href{https://github.com/RejwanShafi25/Brain-stroke-analysis-and-classification--CSE422-Project}{GitHub}}{Team of 4, CSE422}
+\begin{itemize}
+  \item Preprocessed 43,400 clinical records with heavy class imbalance: missing-value imputation (14k+ nulls), categorical encoding, and \textbf{SMOTE} resampling
+  \item Implemented logistic regression (89.7\% accuracy) and compared 4 classifiers with 10-fold cross-validation; best model (Random Forest) reached \textbf{96.8\% accuracy}
+\end{itemize}
+
+% ============================ EDUCATION ============================
+\section{Education}
+
+\entry{Certificate on Data Science (ITS 507)}{Feb 2026 — Present}
+\subentry{BRAC University · Government of Bangladesh ICT Division · Co-funded by Asian Development Bank}{Dhaka}
+\begin{itemize}
+  \item Admitted through competitive national written exam and interview
+  \item Curriculum: advanced ML (XGBoost, LightGBM), Bayesian statistics, time series, big data (Hadoop, Spark), MLOps (Airflow, Docker, Kubernetes, AWS/Azure/GCP), NLP; concludes with industry internship
+\end{itemize}
+\vspace{5pt}
+
+\entry{BSc in Computer Science, BRAC University}{Sep 2021 — Nov 2025}
+\subentry{CGPA 3.30 / 4.00 \;·\; 6 credits from Bard College at Simon's Rock (international exchange)}{Dhaka}
+\begin{itemize}
+  \item Coursework: Statistics \& Probability, Linear Algebra, Numerical Methods, Database Systems, Artificial Intelligence, Algorithms, Data Structures
+\end{itemize}
+
+% ============================ AWARDS ============================
+\section{Awards \& Activities}
+\begin{itemize}
+  \item \textbf{National Finalist}, imaGen Ventures Youth Challenge 2024 (UNICEF Bangladesh \& JAAGO Foundation) — SDG-aligned application; led data collection and market analysis
+  \item \textbf{Co-founder \& Executive Volunteer}, ARUN non-profit (2019 — present) — 5+ years leading disaster-relief fundraising campaigns
+  \item \textbf{Executive Member}, BRACU Robotics Club (2023 — 2024)
+\end{itemize}
+
+% ============================ CERTIFICATIONS ============================
+\section{Certifications \& Languages}
+\begin{itemize}
+  \item LFD201: Introduction to Open Source Development, Git, and Linux — The Linux Foundation
+  \item HTML5 and CSS Fundamentals — edX / W3C
+  \item Languages: Bengali (native), English (professional — IELTS Academic 6.5)
+\end{itemize}
+
+\end{document}

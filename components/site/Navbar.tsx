@@ -47,13 +47,12 @@ export function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-7 lg:flex">
-          {links.map((link, i) => (
+          {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className="group font-mono text-[13px] text-stone transition-colors hover:text-cream"
             >
-              <span className="mr-1 text-ember/70">0{i + 1}.</span>
               {link.label}
               <span className="block h-px max-w-0 bg-ember transition-all duration-300 group-hover:max-w-full" />
             </Link>
