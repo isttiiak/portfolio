@@ -1,0 +1,42 @@
+---
+title: "Mercari Price Suggestion"
+description: "End-to-end machine learning pipeline that predicts fair marketplace prices from listing text — capstone for the BRACU–SICIP Data Science certificate."
+year: "2026"
+role: "Solo — full pipeline"
+stack: ["Python", "Pandas", "Scikit-learn", "LightGBM", "NLP (TF-IDF)", "FastAPI"]
+github: "https://github.com/isttiiak/mercari-price-suggestion"
+order: 2
+---
+
+## The problem
+
+Mercari is Japan's largest community-powered marketplace. Sellers constantly misprice listings: overprice and the item never sells, underprice and money is left on the table. The task — from the Kaggle Mercari Price Suggestion Challenge — is **large-scale regression with NLP**: predict a fair price from nothing but the listing's title, description, category, brand, condition, and shipping flag.
+
+Evaluation metric: **RMSLE** (root mean squared logarithmic error), which punishes relative error — being $5 off on a $10 item is much worse than on a $200 item.
+
+## Pipeline
+
+The project is a complete, reproducible pipeline rather than a single notebook:
+
+1. **EDA** — price distributions (heavily right-skewed → log-transform target), category cardinality, brand sparsity, text length analysis
+2. **Cleaning** — missing brand/category imputation, text normalisation
+3. **Feature engineering** — TF-IDF over title and description, categorical encoding for the three-level category tree, brand, condition, and shipping
+4. **Models** — Ridge regression as a strong linear baseline, then LightGBM over the sparse feature matrix
+5. **Serving** — the selected model serialised with its encoders and exposed through a FastAPI endpoint, with an inference-time preprocessing module mirroring the training pipeline
+
+## Results
+
+| Model | Split | RMSLE | MAE |
+| --- | --- | --- | --- |
+| Ridge regression | 70/30 | 0.6246 | $14.17 |
+| Ridge regression | 80/20 | 0.6248 | $14.16 |
+| LightGBM | 70/30 | 0.4660 | $10.48 |
+| **LightGBM (selected)** | **80/20** | **0.4650** | **$10.44** |
+
+The selected LightGBM model improves **25.5% over the Ridge baseline**, with a mean absolute error of $10.44 on real listing prices.
+
+## What this project demonstrates
+
+- Handling a dataset too large and sparse for naive approaches — sparse matrices end-to-end
+- Choosing metrics and validation splits deliberately, not by default
+- The unglamorous part that matters in production: an inference preprocessing path that exactly mirrors training, shipped behind an API

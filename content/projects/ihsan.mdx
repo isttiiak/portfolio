@@ -1,0 +1,34 @@
+---
+title: "Ihsan"
+description: "Full-stack Islamic productivity app — zikr, salat, fasting, and Quran habit tracking with streaks, goals, and timezone-aware analytics."
+year: "2025"
+role: "Solo developer"
+stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Firebase Auth", "Zustand", "TanStack Query", "Tailwind CSS"]
+live: "https://ihsan-web-app-main.vercel.app"
+github: "https://github.com/isttiiak/ihsan-web-app"
+order: 3
+---
+
+## The problem
+
+Habit trackers exist everywhere, but nothing served Muslim daily worship well: counting zikr, logging the five daily prayers, tracking voluntary fasts against actual Islamic calendar rules, and building a Quran reading habit — in one place, with real analytics.
+
+## Architecture
+
+- **React + Vite** frontend with Zustand for local state and TanStack Query for server state
+- **Express + MongoDB** REST API with Firebase Auth (Bearer ID tokens) — stateless, no session cookies
+- Deployed entirely on free tiers: Vercel (frontend), Render (API), MongoDB Atlas
+
+## Hard problems solved
+
+**Timezones done right.** A "day" for a user in Dhaka is not a UTC day. Daily buckets are anchored so the bucket's UTC date always equals the user's local date, and for prayer/fasting logs the client's local civil date is authoritative — the server clock never decides what "today" means. Daily resets happen at the user's local midnight with zero configuration.
+
+**Write-heavy counters.** Zikr counting is a hot path — taps are counted locally first, then flushed to the API in debounced batches. Server-side writes are atomic MongoDB operations (`$inc`, `$addToSet`), never read-modify-save, so concurrent batches can't lose counts.
+
+**Lazy streak expiry.** There is no cron on free tiers. Streaks that should expire are evaluated lazily on read — the same result as a scheduled job, with zero infrastructure.
+
+**Domain-correct fasting rules.** The fasting tracker encodes actual fiqh: prohibited days (both Eids, Tashriq days) are blocked in the UI, disliked patterns (a lone Friday fast) warn but allow, and every rule links its source hadith with the exact reference number.
+
+## Results
+
+Live in production with zikr, salat, prayer-times, fasting, and Quran tracking modules, a 19-test backend suite, and complex per-habit analytics dashboards.

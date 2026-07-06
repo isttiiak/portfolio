@@ -1,0 +1,122 @@
+export interface Project {
+  slug: string;
+  title: string;
+  kind: "software" | "data";
+  summary: string;
+  tags: string[];
+  live?: string;
+  github?: string;
+  caseStudy: boolean;
+  metrics?: { value: string; label: string }[];
+  year: string;
+}
+
+export const projects: Project[] = [
+  {
+    slug: "fintrack",
+    title: "FinTrack",
+    kind: "software",
+    summary:
+      "Open-source personal finance app with expense tracking, lent/debt ledger, and investment portfolio — plus 10 AI-powered features running on Groq.",
+    tags: ["React 19", "TypeScript", "Supabase", "TanStack", "Groq AI", "Framer Motion"],
+    live: "https://fin-track-eight-blue.vercel.app",
+    github: "https://github.com/isttiiak/FinTrack",
+    caseStudy: true,
+    metrics: [
+      { value: "10", label: "AI features" },
+      { value: "RLS", label: "row-level security" },
+    ],
+    year: "2025",
+  },
+  {
+    slug: "mercari-price-suggestion",
+    title: "Mercari Price Suggestion",
+    kind: "data",
+    summary:
+      "End-to-end ML pipeline that predicts fair listing prices from title, description, category, and brand — NLP feature engineering, LightGBM, FastAPI serving.",
+    tags: ["Python", "LightGBM", "NLP", "FastAPI", "Pandas", "Scikit-learn"],
+    github: "https://github.com/isttiiak/mercari-price-suggestion",
+    caseStudy: true,
+    metrics: [
+      { value: "0.465", label: "RMSLE" },
+      { value: "25.5%", label: "over baseline" },
+      { value: "$10.44", label: "MAE" },
+    ],
+    year: "2026",
+  },
+  {
+    slug: "ihsan",
+    title: "Ihsan",
+    kind: "software",
+    summary:
+      "Full-stack Islamic productivity app — zikr, salat, fasting and Quran habit tracking with streaks, goals, and timezone-aware analytics.",
+    tags: ["React", "Express", "MongoDB", "Firebase Auth", "Zustand", "React Query"],
+    live: "https://ihsan-web-app-main.vercel.app",
+    github: "https://github.com/isttiiak/ihsan-web-app",
+    caseStudy: true,
+    metrics: [
+      { value: "4", label: "ibadah trackers" },
+      { value: "0ms", label: "config for timezones" },
+    ],
+    year: "2025",
+  },
+  {
+    slug: "adaptive-rating-thesis",
+    title: "Adaptive Rating System",
+    kind: "data",
+    summary:
+      "Undergraduate thesis: Bayesian-average product ratings with exponential time decay and AI sentiment extraction — shipped as a Chrome extension for real e-commerce pages.",
+    tags: ["Bayesian statistics", "Sentiment analysis", "EDA", "Chrome Extension", "JavaScript"],
+    github: "https://github.com/isttiiak/e-commerce-extension",
+    caseStudy: true,
+    metrics: [
+      { value: "1yr", label: "research project" },
+      { value: "HCI", label: "domain" },
+    ],
+    year: "2024–25",
+  },
+  {
+    slug: "cinetrack",
+    title: "CineTrack",
+    kind: "software",
+    summary:
+      "Movie & series watchlist with instant guest mode, Google sign-in with real-time Firestore sync, and TMDB poster auto-fetch.",
+    tags: ["React", "TypeScript", "Firestore", "TMDB API", "Framer Motion"],
+    live: "https://cine-track-silk.vercel.app",
+    github: "https://github.com/isttiiak/CineTrack",
+    caseStudy: false,
+    year: "2026",
+  },
+  {
+    slug: "brain-stroke-classification",
+    title: "Brain Stroke Classification",
+    kind: "data",
+    summary:
+      "Classified 43,400 clinical records under heavy class imbalance — SMOTE resampling, 4 classifiers compared with 10-fold cross-validation.",
+    tags: ["Python", "Scikit-learn", "SMOTE", "Random Forest", "EDA"],
+    github: "https://github.com/RejwanShafi25/Brain-stroke-analysis-and-classification--CSE422-Project",
+    caseStudy: false,
+    metrics: [
+      { value: "96.79%", label: "best accuracy" },
+      { value: "43.4K", label: "records" },
+    ],
+    year: "2023",
+  },
+  {
+    slug: "citynet-isp",
+    title: "cityNet ISP",
+    kind: "software",
+    summary:
+      "ISP customer & billing management system — subscriptions, complaints, payment tracking across a client-server MERN architecture.",
+    tags: ["React", "Node.js", "MongoDB", "Firebase Auth"],
+    github: "https://github.com/isttiiak/cityNet-isp",
+    caseStudy: false,
+    year: "2024",
+  },
+];
+
+export const featuredProjects = projects.filter((p) =>
+  ["fintrack", "mercari-price-suggestion", "ihsan", "cinetrack"].includes(p.slug)
+);
+
+export const dataProjects = projects.filter((p) => p.kind === "data");

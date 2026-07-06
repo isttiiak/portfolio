@@ -1,0 +1,43 @@
+---
+title: "FinTrack"
+description: "Personal finance management with an AI layer — expense tracking, lent/debt ledger, and investment portfolio, built for the Bangladeshi context."
+year: "2025"
+role: "Solo developer"
+stack: ["React 19", "TypeScript", "Supabase (PostgreSQL)", "TanStack Router", "TanStack Query", "Zustand", "Framer Motion", "Groq AI"]
+live: "https://fin-track-eight-blue.vercel.app"
+github: "https://github.com/isttiiak/FinTrack"
+order: 1
+---
+
+## The problem
+
+Most finance apps are built for Western banking rails. In Bangladesh, a huge share of personal finance happens informally — money lent to friends, family debts, cash expenses. I wanted one app that treats the **lent/debt ledger** as a first-class citizen next to expenses and investments, and is fully self-hostable so nobody has to trust a third party with financial data.
+
+## Architecture
+
+- **React 19 + TypeScript** frontend with TanStack Router for type-safe routing and TanStack Query for server state
+- **Supabase (PostgreSQL)** as the backend — auth, database, and storage without running a server
+- **Row Level Security** policies on every table, so each user can only ever read or write their own rows — enforced at the database layer, not in application code
+- **Zustand** for lightweight client state, **Framer Motion** for interaction polish
+
+## The AI layer
+
+I integrated **10 AI-powered features** through the Groq API (`llama-3.1-8b-instant` — chosen for near-instant inference on the free tier):
+
+- Smart expense categorisation from free-text descriptions
+- Anomaly detection on spending patterns
+- Weekly digest generation and budget analysis
+- Natural-language financial chat over your own data
+- Debt payoff strategy suggestions
+
+The interesting engineering problem was **grounding**: every AI feature receives a compact, pre-aggregated summary of the user's data rather than raw rows — keeping prompts small, fast, and cheap enough for a free-tier deployment.
+
+## Data safety decisions
+
+- Full data export to Excel/CSV at any time
+- CSV import with a column-mapping preview before anything is written
+- Soft-delete everywhere — nothing is destroyed on first click
+
+## Results
+
+Live in production on Vercel's free tier, fully open source, and self-hostable end-to-end with a single Supabase project.
