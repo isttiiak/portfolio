@@ -36,6 +36,7 @@ export function Navbar() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-[200] transition-all duration-400 ${
         scrolled ? "border-b border-line bg-coal/85 backdrop-blur-md" : "bg-transparent"
@@ -79,7 +80,10 @@ export function Navbar() {
           <MenuIcon />
         </button>
       </nav>
+    </header>
 
+      {/* Overlay must live OUTSIDE the header: its backdrop-blur creates a
+          containing block that would trap this fixed element inside the bar */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -129,6 +133,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

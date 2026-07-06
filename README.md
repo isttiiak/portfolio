@@ -194,13 +194,24 @@ cv/
 └── istiak-islam-cv-photo.pdf  ← output
 ```
 
-Workflow:
+### The exact commands after editing `cv/src/body.tex`
 
 ```bash
-cd cv
-# edit src/body.tex, then:
-make          # rebuilds BOTH PDFs and refreshes public/istiak-islam-resume.pdf on the site
+cd /Users/istiakislam/projects/myportfolio/cv
+make
 ```
+
+That one `make` command does three things: compiles the no-photo PDF, compiles the photo
+PDF, and copies the no-photo version to `public/istiak-islam-resume.pdf` so the website
+serves the fresh copy. Then to put it on the live site:
+
+```bash
+cd ..
+git add -A && git commit -m "update cv" && git push
+```
+
+If `make` ever fails, the error names a line number — it's almost always an unescaped
+`%`, `$`, or `&` (write `\%`, `\$`, `\&`).
 
 Common edits inside `body.tex`:
 
