@@ -13,5 +13,5 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/isttiiak",
   telegram: "https://t.me/mobs08",
   telegramHandle: "@mobs08",
-  resume: "/resume.pdf",
+  resume: "/istiak-islam-resume.pdf",
 } as const;

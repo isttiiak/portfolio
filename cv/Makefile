@@ -16,7 +16,7 @@ build/istiak-islam-cv-photo.pdf: istiak-islam-cv-photo.tex src/body.tex photo/is
 copy:
 	cp build/istiak-islam-cv.pdf istiak-islam-cv.pdf
 	cp build/istiak-islam-cv-photo.pdf istiak-islam-cv-photo.pdf
-	cp build/istiak-islam-cv.pdf ../public/resume.pdf
+	cp build/istiak-islam-cv.pdf ../public/istiak-islam-resume.pdf
 
 clean:
 	rm -rf build
