@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionReveal } from "@/components/fx/SectionReveal";
 import { Magnetic } from "@/components/fx/Magnetic";
@@ -13,6 +13,13 @@ const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
+
+  // Success/error notices dismiss themselves
+  useEffect(() => {
+    if (status !== "sent" && status !== "error") return;
+    const timer = setTimeout(() => setStatus("idle"), 6000);
+    return () => clearTimeout(timer);
+  }, [status]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -64,7 +71,7 @@ export function Contact() {
           <div className="mt-10 space-y-5">
             <a
               href={`mailto:${site.email}`}
-              className="group flex items-center gap-4 text-cream transition-colors hover:text-amber"
+              className="group flex w-fit items-center gap-4 text-cream transition-colors hover:text-amber"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember transition-colors group-hover:border-ember">
                 <MailIcon width={18} height={18} />
@@ -75,7 +82,7 @@ export function Contact() {
               href={site.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 text-cream transition-colors hover:text-amber"
+              className="group flex w-fit items-center gap-4 text-cream transition-colors hover:text-amber"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember transition-colors group-hover:border-ember">
                 <GithubIcon width={18} height={18} />
@@ -86,7 +93,7 @@ export function Contact() {
               href={site.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 text-cream transition-colors hover:text-amber"
+              className="group flex w-fit items-center gap-4 text-cream transition-colors hover:text-amber"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember transition-colors group-hover:border-ember">
                 <LinkedinIcon width={18} height={18} />
@@ -97,14 +104,14 @@ export function Contact() {
               href={site.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 text-cream transition-colors hover:text-amber"
+              className="group flex w-fit items-center gap-4 text-cream transition-colors hover:text-amber"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember transition-colors group-hover:border-ember">
                 <TelegramIcon width={18} height={18} />
               </span>
               <span className="font-mono text-sm">t.me/mobs08 · {site.telegramHandle}</span>
             </a>
-            <div className="flex items-center gap-4 text-stone">
+            <div className="flex w-fit items-center gap-4 text-stone">
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember">
                 <MapPinIcon width={18} height={18} />
               </span>
@@ -134,7 +141,7 @@ export function Contact() {
                   type="text"
                   required
                   minLength={2}
-                  placeholder="Jane Doe"
+                  placeholder="Your Name"
                   className="w-full rounded-lg border border-line bg-char px-4 py-3 text-sm text-cream placeholder-smoke/60 outline-none transition-colors focus:border-ember"
                 />
               </div>
@@ -147,7 +154,7 @@ export function Contact() {
                   name="email"
                   type="email"
                   required
-                  placeholder="jane@company.com"
+                  placeholder="name@company.com"
                   className="w-full rounded-lg border border-line bg-char px-4 py-3 text-sm text-cream placeholder-smoke/60 outline-none transition-colors focus:border-ember"
                 />
               </div>

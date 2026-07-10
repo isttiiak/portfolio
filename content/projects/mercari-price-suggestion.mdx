@@ -6,6 +6,19 @@ role: "Solo — full pipeline"
 stack: ["Python", "Pandas", "Scikit-learn", "LightGBM", "NLP (TF-IDF)", "FastAPI"]
 github: "https://github.com/isttiiak/mercari-price-suggestion"
 order: 2
+architecture:
+  - layer: "Data"
+    tech: "Kaggle Mercari dataset — 1.4M+ listings"
+  - layer: "Processing"
+    tech: "Pandas + scikit-learn sparse pipeline"
+  - layer: "Features"
+    tech: "TF-IDF (title + description), categorical encoding"
+  - layer: "Models"
+    tech: "Ridge baseline → LightGBM (selected)"
+  - layer: "Serving"
+    tech: "FastAPI + serialised model & encoders"
+  - layer: "Evaluation"
+    tech: "RMSLE on log-transformed target"
 ---
 
 ## The problem
@@ -14,15 +27,13 @@ Mercari is Japan's largest community-powered marketplace. Sellers constantly mis
 
 Evaluation metric: **RMSLE** (root mean squared logarithmic error), which punishes relative error — being $5 off on a $10 item is much worse than on a $200 item.
 
-## Pipeline
+## Key features
 
-The project is a complete, reproducible pipeline rather than a single notebook:
-
-1. **EDA** — price distributions (heavily right-skewed → log-transform target), category cardinality, brand sparsity, text length analysis
-2. **Cleaning** — missing brand/category imputation, text normalisation
-3. **Feature engineering** — TF-IDF over title and description, categorical encoding for the three-level category tree, brand, condition, and shipping
-4. **Models** — Ridge regression as a strong linear baseline, then LightGBM over the sparse feature matrix
-5. **Serving** — the selected model serialised with its encoders and exposed through a FastAPI endpoint, with an inference-time preprocessing module mirroring the training pipeline
+- **Complete reproducible pipeline**: EDA → cleaning → feature engineering → model comparison → serving, not a single notebook
+- **Sparse end-to-end**: TF-IDF over title + description produces a wide sparse matrix kept sparse through every stage — the whole pipeline trains on a laptop
+- **Two-model comparison** with honest baselines: Ridge regression, then LightGBM on identical features and splits
+- **FastAPI serving** with an inference-time preprocessing module that exactly mirrors the training pipeline
+- Serialised model + encoders shipped together, so the API is one `uvicorn` command from a prediction
 
 ## Results
 
@@ -35,8 +46,16 @@ The project is a complete, reproducible pipeline rather than a single notebook:
 
 The selected LightGBM model improves **25.5% over the Ridge baseline**, with a mean absolute error of $10.44 on real listing prices.
 
-## What this project demonstrates
+## Challenges
 
-- Handling a dataset too large and sparse for naive approaches — sparse matrices end-to-end
-- Choosing metrics and validation splits deliberately, not by default
-- The unglamorous part that matters in production: an inference preprocessing path that exactly mirrors training, shipped behind an API
+**Scale on a laptop.** 1.4M listings with TF-IDF features explode into a matrix that would need a cluster if densified — one careless `.toarray()` call away from an out-of-memory crash. Keeping every transformer sparse-aware was the difference between "runs locally" and "needs infrastructure."
+
+**Respecting the metric.** RMSLE means training on `log1p(price)` and inverting at prediction time; getting the transform boundary wrong silently corrupts every downstream number. The evaluation harness applies the inverse in exactly one place.
+
+**Train/serve skew.** The most common failure mode of deployed ML is inference preprocessing drifting from training. Every transformation lives in one shared module imported by both paths — there is no second implementation to drift.
+
+## What I learned
+
+- The metric shapes the whole pipeline — target transforms, validation, and model choice all follow from RMSLE
+- **Baselines earn their keep**: without Ridge, "0.465" is just a number; against it, it's a defensible 25.5% lift
+- The unglamorous serving layer is the real job — mirror-the-pipeline discipline matters more than model choice

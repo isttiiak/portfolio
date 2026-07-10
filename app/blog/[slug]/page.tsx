@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pb-28 pt-32 sm:px-10">
+      <main id="main" className="mx-auto max-w-3xl px-6 pb-28 pt-32 sm:px-10">
         <SectionReveal>
           <Link
             href="/blog"

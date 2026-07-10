@@ -16,6 +16,7 @@ export interface DocMeta {
   live?: string;
   github?: string;
   order?: number;
+  architecture?: { layer: string; tech: string }[];
 }
 
 export interface Doc {

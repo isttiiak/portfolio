@@ -56,6 +56,12 @@ body {
   color: var(--color-coal);
 }
 
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 @media (pointer: fine) {
   body[data-custom-cursor="true"],
   body[data-custom-cursor="true"] a,

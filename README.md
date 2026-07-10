@@ -233,6 +233,8 @@ LaTeX gotchas: `%` starts a comment (write `\%`), `$` starts math mode (write `\
 
 - **Hosting:** Vercel auto-deploys every push to `main`. Nothing to do.
 - **Contact form:** needs a free key from [web3forms.com](https://web3forms.com) → add `NEXT_PUBLIC_WEB3FORMS_KEY` in Vercel → Settings → Environment Variables → redeploy. Without it, the form falls back to opening the visitor's mail app (mailto) — nothing breaks.
+- **Google Analytics 4 (free):** create a property at [analytics.google.com](https://analytics.google.com) (Admin → Create property → Web stream for `https://istiak.is-a.dev`), copy the `G-XXXXXXXXXX` measurement ID, then add `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-…` in Vercel env vars (and `.env.local` for local) → redeploy. Visitors, countries, referrals, and per-page views appear in Reports within ~24h. The tag stays completely off while the variable is unset.
+- **Google Search Console (required for `site:` indexing):** go to [search.google.com/search-console](https://search.google.com/search-console) → Add property → URL prefix `https://istiak.is-a.dev` → verify with the HTML-tag method (add the given `<meta>` content value via `verification.google` in `app/layout.tsx` metadata, or upload the HTML file to `public/`) → then Sitemaps → submit `https://istiak.is-a.dev/sitemap.xml`. A new domain typically starts appearing for `site:` searches within a few days to two weeks after this.
 - **Custom domain later:** Vercel → Settings → Domains → add it, then update `url` in `lib/data/site.ts` so sitemap/OG cards point at it. Free option: claim `istiak.is-a.dev` via a PR at [github.com/is-a-dev/register](https://github.com/is-a-dev/register).
 - **GitHub calendar:** reads the public API for `isttiiak` — no token, no setup.
 

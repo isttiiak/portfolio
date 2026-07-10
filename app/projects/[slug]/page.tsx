@@ -37,7 +37,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pb-28 pt-32 sm:px-10">
+      <main id="main" className="mx-auto max-w-3xl px-6 pb-28 pt-32 sm:px-10">
         <SectionReveal>
           <Link
             href="/#projects"
@@ -95,6 +95,27 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   {item}
                 </span>
               ))}
+            </div>
+          )}
+
+          {meta.architecture && (
+            <div className="mt-10">
+              <p className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-ember">
+                architecture
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {meta.architecture.map((item) => (
+                  <div
+                    key={item.layer}
+                    className="rounded-xl border border-line bg-char p-4 transition-colors hover:border-ember/50"
+                  >
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber">
+                      {item.layer}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-snug text-cream">{item.tech}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </SectionReveal>

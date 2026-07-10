@@ -27,7 +27,10 @@ export function TechStack() {
         <SectionHeading index="04" eyebrow="toolbox" title="Tech I work with" />
       </div>
 
-      <div className="space-y-4 border-y border-line py-8 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+      <div
+        aria-hidden="true"
+        className="space-y-4 border-y border-line py-8 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+      >
         <Marquee durationSeconds={34}>
           <MarqueeRow items={firstRow} />
         </Marquee>

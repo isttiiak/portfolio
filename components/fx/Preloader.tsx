@@ -9,11 +9,19 @@ const SEEN_KEY = "portfolio_preloader_seen";
 
 export function Preloader() {
   const [visible, setVisible] = useState(true);
+  // gone = unmount instantly with no exit animation (skip paths and hidden tabs,
+  // where rAF-driven exit animations can never play)
+  const [gone, setGone] = useState(false);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (sessionStorage.getItem(SEEN_KEY) || prefersReducedMotion()) {
-      setVisible(false);
+    if (
+      sessionStorage.getItem(SEEN_KEY) ||
+      prefersReducedMotion() ||
+      document.visibilityState === "hidden"
+    ) {
+      sessionStorage.setItem(SEEN_KEY, "1");
+      setGone(true);
       return;
     }
 
@@ -32,8 +40,24 @@ export function Preloader() {
       }
     };
     raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+
+    // Backgrounded mid-intro: drop the overlay instantly — its exit
+    // animation could never play in a hidden tab
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        sessionStorage.setItem(SEEN_KEY, "1");
+        setGone(true);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, []);
+
+  if (gone) return null;
 
   const letters = site.name.split("");
 

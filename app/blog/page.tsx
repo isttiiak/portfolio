@@ -26,7 +26,7 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pb-28 pt-32 sm:px-10">
+      <main id="main" className="mx-auto max-w-3xl px-6 pb-28 pt-32 sm:px-10">
         <SectionReveal>
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-ember">writing</p>
           <h1 className="font-display text-4xl font-bold tracking-tight text-cream sm:text-5xl">
