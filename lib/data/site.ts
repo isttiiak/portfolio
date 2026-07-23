@@ -7,7 +7,7 @@ export const site = {
   description:
     "Portfolio of Istiak Islam — software engineer and data engineer from Dhaka, Bangladesh. Full-stack products, machine learning pipelines, and data-driven systems.",
   url: "https://istiak.is-a.dev",
-  altUrl: "https://isttiiak.vercel.app",
+  altUrl: "https://istiak.is-a.dev",
   location: "Dhaka, Bangladesh",
   email: "isttiiak@gmail.com",
   github: "https://github.com/isttiiak",

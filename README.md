@@ -1,7 +1,7 @@
 # istiak.dev — Portfolio
 
 Personal portfolio of **Istiak Islam** — software engineer & data engineer.
-Live: [isttiiak.vercel.app](https://isttiiak.vercel.app)
+Live: [istiak.is-a.dev](https://istiak.is-a.dev)
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v4 · Framer Motion · GSAP · Lenis · MDX
 
@@ -55,7 +55,7 @@ export const site = {
   name: "Istiak Islam",
   roles: ["Software Engineer", "Data Engineer"],   // hero typewriter cycles these
   tagline: "I build full-stack products and end-to-end data pipelines…",
-  url: "https://isttiiak.vercel.app",              // change when you get a custom domain
+  url: "https://istiak.is-a.dev",              // change when you get a custom domain
   email: "isttiiak@gmail.com",
   telegram: "https://t.me/mobs08",
   // …
