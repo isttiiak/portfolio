@@ -5,6 +5,9 @@ Live: [istiak.is-a.dev](https://istiak.is-a.dev)
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v4 · Framer Motion · GSAP · Lenis · MDX
 
+
+updated with latest certificate.
+
 ---
 
 ## Quick reference — where everything lives
