@@ -30,10 +30,10 @@ export function About() {
             <p>
               On the data side, my undergraduate thesis built a{" "}
               <span className="text-cream">Bayesian adaptive rating system</span>{" "}for e-commerce, and
-              I&apos;m currently completing the government-backed{" "}
-              <span className="text-cream">ITS 507 Data Science certificate</span>{" "}at BRAC University
-              — admitted through a competitive national exam — covering advanced ML, big data, and
-              MLOps. My capstone took a Kaggle-scale NLP regression problem from raw data to a served
+              I completed the government-backed{" "}
+              <span className="text-cream">Certification in Data Science (ITS 507)</span>{" "}at BRAC
+              University in 2026 — admitted through a competitive national exam — covering advanced
+              ML, big data, data pipelines, and NLP. My capstone took a Kaggle-scale NLP regression problem from raw data to a served
               FastAPI model.
             </p>
           </SectionReveal>

@@ -8,14 +8,15 @@ export interface TimelineItem {
 
 export const timeline: TimelineItem[] = [
   {
-    period: "2026 — present",
-    title: "Certificate on Data Science (ITS 507)",
-    place: "BRAC University · Govt. of Bangladesh ICT Initiative · ADB co-funded",
+    period: "Feb — Jul 2026",
+    title: "Certification in Data Science (ITS 507)",
+    place: "BRAC University · SICIP, Finance Division, Govt. of Bangladesh",
     accent: true,
     points: [
+      "100-hour skills training — completed and certified (Jul 2026)",
       "Admitted via competitive national written exam and interview",
       "Advanced ML (XGBoost, LightGBM), Bayesian statistics, time series (ARIMA, Prophet)",
-      "Big data (Hadoop, Spark) and MLOps (Airflow, Docker, Kubernetes, cloud)",
+      "Big data (Hadoop, Spark), data pipelines & workflow automation (Airflow), Ops, NLP & text mining",
       "Capstone: Mercari price suggestion — end-to-end ML pipeline",
     ],
   },
