@@ -1,6 +1,7 @@
 "use client";
 
 import { JumpingIcons } from "@/components/fx/JumpingIcons";
+import { scrollToTop } from "@/components/fx/LenisProvider";
 import { site } from "@/lib/data/site";
 
 export function Footer() {
@@ -17,7 +18,7 @@ export function Footer() {
           © {year} {site.name} · {site.location}
         </p>
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={scrollToTop}
           className="group font-mono text-xs text-smoke transition-colors hover:text-ember"
         >
           back to top <span className="inline-block transition-transform group-hover:-translate-y-0.5">↑</span>

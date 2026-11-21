@@ -7,7 +7,7 @@ export const site = {
   description:
     "Portfolio of Istiak Islam — software engineer and data engineer from Dhaka, Bangladesh. Full-stack products, machine learning pipelines, and data-driven systems.",
   url: "https://istiak.is-a.dev",
-  altUrl: "https://istiak.is-a.dev",
+  altUrl: "https://isttiiak.vercel.app",
   location: "Dhaka, Bangladesh",
   email: "isttiiak@gmail.com",
   github: "https://github.com/isttiiak",
@@ -15,4 +15,6 @@ export const site = {
   telegram: "https://t.me/mobs08",
   telegramHandle: "@mobs08",
   resume: "/istiak-islam-resume.pdf",
+  // Public GitHub repo count, shown in About and the projects gallery — update when it changes
+  publicRepos: 82,
 } as const;

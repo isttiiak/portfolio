@@ -8,6 +8,7 @@ import { Timeline } from "@/components/sections/Timeline";
 import { GithubActivity } from "@/components/sections/GithubActivity";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { getDocSlugs } from "@/lib/mdx";
 
 export default function HomePage() {
   return (
@@ -16,7 +17,7 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <About />
-        <FeaturedProjects />
+        <FeaturedProjects caseStudySlugs={getDocSlugs("projects")} />
         <DataWork />
         <TechStack />
         <Timeline />

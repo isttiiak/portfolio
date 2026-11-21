@@ -48,9 +48,31 @@ export function getAllDocs(dir: "projects" | "blog"): Doc[] {
     .map((slug) => getDoc(dir, slug))
     .filter((d): d is Doc => d !== null)
     .sort((a, b) => {
-      if (a.meta.order !== undefined && b.meta.order !== undefined) {
-        return a.meta.order - b.meta.order;
-      }
+      // Docs with an explicit `order` come first (ascending), the rest newest-first
+      const ao = a.meta.order;
+      const bo = b.meta.order;
+      if (ao !== undefined && bo !== undefined) return ao - bo;
+      if (ao !== undefined) return -1;
+      if (bo !== undefined) return 1;
       return (b.meta.date ?? "").localeCompare(a.meta.date ?? "");
     });
+}
+
+/** True when content/projects/<slug>.mdx exists (a card links to it only if also flagged `caseStudy`). */
+export function hasCaseStudyPage(slug: string): boolean {
+  return getDocSlugs("projects").includes(slug);
+}
+
+/**
+ * Format a frontmatter date ("2026-05-10"). Date-only strings parse as UTC midnight,
+ * so format in UTC too — otherwise a build west of UTC shows the previous day.
+ */
+export function formatDate(date?: string): string {
+  if (!date) return "";
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
 }

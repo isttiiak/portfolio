@@ -5,6 +5,18 @@ import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 
+// The active instance, so other components scroll through Lenis instead of
+// fighting it with native smooth scroll
+let activeLenis: Lenis | null = null;
+
+export function scrollToTop() {
+  if (activeLenis) {
+    activeLenis.scrollTo(0);
+  } else {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
+  }
+}
+
 export function LenisProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (prefersReducedMotion()) return;
@@ -14,6 +26,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
+    activeLenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
 
     const tick = (time: number) => {
@@ -24,6 +37,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 
     return () => {
       gsap.ticker.remove(tick);
+      if (activeLenis === lenis) activeLenis = null;
       lenis.destroy();
     };
   }, []);

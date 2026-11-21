@@ -16,14 +16,19 @@ interface CountUpProps {
 export function CountUp({ value, suffix = "", prefix = "", decimals = 0, durationMs = 1800, className }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
-  const [display, setDisplay] = useState(0);
+  // Server HTML carries the real value (crawlers, no-JS); once mounted, reset to 0
+  // so the count-up can play when the number scrolls into view
+  const [display, setDisplay] = useState(value);
+  const armed = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-    if (prefersReducedMotion()) {
-      setDisplay(value);
-      return;
-    }
+    if (prefersReducedMotion()) return;
+    armed.current = true;
+    setDisplay(0);
+  }, []);
+
+  useEffect(() => {
+    if (!inView || !armed.current) return;
 
     const start = performance.now();
     let raf: number;

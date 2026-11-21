@@ -4,6 +4,7 @@ import { SectionReveal } from "@/components/fx/SectionReveal";
 import { PipelineSVG } from "@/components/sections/PipelineSVG";
 import { ArrowUpRightIcon, GithubIcon } from "@/components/ui/icons";
 import { dataProjects } from "@/lib/data/projects";
+import { hasCaseStudyPage } from "@/lib/mdx";
 
 export function DataWork() {
   return (
@@ -55,7 +56,7 @@ export function DataWork() {
                   ))}
                 </div>
 
-                {project.caseStudy && (
+                {project.caseStudy && hasCaseStudyPage(project.slug) && (
                   <Link
                     href={`/projects/${project.slug}`}
                     className="group mt-5 inline-flex items-center gap-1.5 font-mono text-[13px] text-ember transition-colors hover:text-amber"

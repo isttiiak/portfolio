@@ -1,3 +1,5 @@
+import { site } from "@/lib/data/site";
+
 export interface TimelineItem {
   period: string;
   title: string;
@@ -50,7 +52,7 @@ export const timeline: TimelineItem[] = [
 
 export const counters = [
   { value: 3, suffix: "", label: "products live in production" },
-  { value: 77, suffix: "", label: "public repositories" },
+  { value: site.publicRepos, suffix: "", label: "public repositories" },
   { value: 10, suffix: "+", label: "AI features shipped" },
   { value: 43, suffix: "K", label: "records in largest dataset" },
 ];

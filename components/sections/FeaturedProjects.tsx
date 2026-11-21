@@ -8,8 +8,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/fx/TiltCard";
 import { ArrowUpRightIcon, ExternalLinkIcon, GithubIcon } from "@/components/ui/icons";
 import { featuredProjects, type Project } from "@/lib/data/projects";
+import { site } from "@/lib/data/site";
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, hasCaseStudy }: { project: Project; hasCaseStudy: boolean }) {
   return (
     <TiltCard className="h-full w-[85vw] max-w-[460px] shrink-0 sm:w-[460px]">
       <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-char">
@@ -78,7 +79,7 @@ function ProjectCard({ project }: { project: Project }) {
             ))}
           </div>
 
-          {project.caseStudy && (
+          {hasCaseStudy && (
             <Link
               href={`/projects/${project.slug}`}
               className="group mt-6 inline-flex items-center gap-1.5 font-mono text-[13px] text-ember transition-colors hover:text-amber"
@@ -93,7 +94,7 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-export function FeaturedProjects() {
+export function FeaturedProjects({ caseStudySlugs }: { caseStudySlugs: string[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -140,13 +141,16 @@ export function FeaturedProjects() {
       >
         {featuredProjects.map((project) => (
           <div key={project.slug} style={{ scrollSnapAlign: "center" }} className="flex">
-            <ProjectCard project={project} />
+            <ProjectCard
+              project={project}
+              hasCaseStudy={project.caseStudy && caseStudySlugs.includes(project.slug)}
+            />
           </div>
         ))}
 
         <div className="flex w-[70vw] max-w-[380px] shrink-0 items-center justify-center">
           <a
-            href="https://github.com/isttiiak?tab=repositories"
+            href={`${site.github}?tab=repositories`}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center gap-3 text-center"
@@ -155,7 +159,7 @@ export function FeaturedProjects() {
               <ArrowUpRightIcon width={24} height={24} />
             </span>
             <span className="font-mono text-sm text-stone transition-colors group-hover:text-cream">
-              all 77 repos on GitHub
+              all {site.publicRepos} repos on GitHub
             </span>
           </a>
         </div>

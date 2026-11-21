@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { prefersReducedMotion } from "@/lib/motion";
+import { isTouchDevice, prefersReducedMotion } from "@/lib/motion";
 
 interface Particle {
   x: number;
@@ -21,7 +21,8 @@ export function ParticleCanvas() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || prefersReducedMotion()) return;
+    // Desktop-pointer only (CLAUDE.md convention), and never under reduced motion
+    if (!canvas || prefersReducedMotion() || isTouchDevice()) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -30,6 +31,7 @@ export function ParticleCanvas() {
     let height = 0;
     let particles: Particle[] = [];
     let raf = 0;
+    let running = false;
     const mouse = { x: -9999, y: -9999 };
     const dpr = Math.min(2, window.devicePixelRatio || 1);
 
@@ -52,6 +54,8 @@ export function ParticleCanvas() {
       }));
     };
 
+    // Listen on window: the hero content sits above the canvas, so the canvas
+    // itself almost never receives pointer events
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
@@ -112,20 +116,33 @@ export function ParticleCanvas() {
         }
       }
 
-      raf = requestAnimationFrame(frame);
+      if (running) raf = requestAnimationFrame(frame);
     };
 
+    // Only animate while the hero is on screen
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) {
+        running = true;
+        raf = requestAnimationFrame(frame);
+      } else if (!entry.isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(raf);
+      }
+    });
+
     resize();
-    raf = requestAnimationFrame(frame);
+    observer.observe(canvas);
     window.addEventListener("resize", resize);
-    canvas.addEventListener("mousemove", onMouseMove, { passive: true });
-    canvas.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.documentElement.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
+      running = false;
       cancelAnimationFrame(raf);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
-      canvas.removeEventListener("mousemove", onMouseMove);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("mousemove", onMouseMove);
+      document.documentElement.removeEventListener("mouseleave", onMouseLeave);
     };
   }, []);
 

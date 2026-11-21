@@ -6,7 +6,7 @@ import { Footer } from "@/components/sections/Footer";
 import { MdxContent } from "@/components/mdx/MdxContent";
 import { SectionReveal } from "@/components/fx/SectionReveal";
 import { ArrowLeftIcon } from "@/components/ui/icons";
-import { getDoc, getDocSlugs } from "@/lib/mdx";
+import { formatDate, getDoc, getDocSlugs } from "@/lib/mdx";
 
 export function generateStaticParams() {
   return getDocSlugs("blog").map((slug) => ({ slug }));
@@ -33,9 +33,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!doc) notFound();
 
   const { meta, content } = doc;
-  const date = meta.date
-    ? new Date(meta.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-    : "";
+  const date = formatDate(meta.date);
 
   return (
     <>

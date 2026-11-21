@@ -4,21 +4,12 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { SectionReveal } from "@/components/fx/SectionReveal";
 import { ArrowUpRightIcon } from "@/components/ui/icons";
-import { getAllDocs } from "@/lib/mdx";
+import { formatDate, getAllDocs } from "@/lib/mdx";
 
 export const metadata: Metadata = {
   title: "Blog",
   description: "Writing on software engineering, data pipelines, and machine learning.",
 };
-
-function formatDate(date?: string) {
-  if (!date) return "";
-  return new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 
 export default function BlogPage() {
   const posts = getAllDocs("blog");

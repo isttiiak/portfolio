@@ -46,7 +46,12 @@ export function TiltCard({ children, className, maxTilt = 7 }: TiltCardProps) {
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      style={{ rotateX: springRotateX, rotateY: springRotateY, transformStyle: "preserve-3d", perspective: 900 }}
+      style={{
+        rotateX: springRotateX,
+        rotateY: springRotateY,
+        transformPerspective: 900, // perspective on the card's own transform (CSS `perspective` only affects children)
+        transformStyle: "preserve-3d",
+      }}
       className={`relative ${className ?? ""}`}
     >
       <motion.div
