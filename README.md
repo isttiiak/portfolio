@@ -5,7 +5,7 @@
 **Software engineer & data engineer from Dhaka, Bangladesh.**
 Full-stack products, end-to-end ML pipelines, and the case studies behind them.
 
-[**istiak.is-a.dev →**](https://istiak.is-a.dev)
+[**istiak.is-a.dev →**](https://istiak.is-a.dev) &nbsp;·&nbsp; also on Vercel: [isttiiak.vercel.app](https://isttiiak.vercel.app)
 
 <a href="https://istiak.is-a.dev"><img src="https://istiak.is-a.dev/opengraph-image" alt="Istiak Islam — Software Engineer · Data Engineer" width="820"></a>
 
