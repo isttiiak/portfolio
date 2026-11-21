@@ -104,12 +104,12 @@ sentiment analysis to e-commerce rating systems. Seeking software engineering an
 \end{itemize}
 \vspace{5pt}
 
-\entry{Ihsan — Islamic Productivity Platform}{2025}
-\subentry{React, Node.js, Express, MongoDB, Firebase Auth \;·\; \href{https://ihsan-web-app-main.vercel.app}{live} \;·\; \href{https://github.com/isttiiak/ihsan-web-app}{GitHub}}{Live in production}
+\entry{Bustandeen — Islamic Worship Companion (PWA)}{2025 — 2026}
+\subentry{React, TypeScript, Express, MongoDB, Firebase Auth \;·\; \href{https://bustandeen.com}{live} \;·\; \href{https://github.com/isttiiak/bustandeen-web-app}{GitHub}}{Live in production}
 \begin{itemize}
-  \item Built a full-stack habit platform (prayer, zikr, fasting, Quran tracking) with streaks, goals, and per-habit analytics dashboards; 19-test backend suite
-  \item Engineered timezone-correct daily buckets where the client's local civil date is authoritative — accurate local-midnight resets worldwide with zero user configuration
-  \item Optimized write-heavy counters with debounced client batching and atomic MongoDB operations (\texttt{\$inc}), eliminating lost updates; implemented lazy streak expiry requiring no cron infrastructure
+  \item Built and run a free, ad-free worship app (salat with kaza debt, zikr, Quran reading and hifz, fiqh-aware fasting, prayer times and Qibla) as an installable, offline-first PWA in English and Bangla
+  \item Modelled a worship day that turns at Fajr with the client's tracking day authoritative for every log; optimistic zikr counting flushed in debounced, idempotent batches onto atomic MongoDB writes (\texttt{\$inc})
+  \item Shipped \textbf{300+ versioned releases} backed by 220+ test files (Jest, Vitest) and CI gates; AES-256-GCM field encryption for sensitive data and TOTP two-factor auth for admins
 \end{itemize}
 \vspace{5pt}
 

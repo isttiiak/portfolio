@@ -45,20 +45,21 @@ export const projects: Project[] = [
     year: "2026",
   },
   {
-    slug: "ihsan",
-    title: "Ihsan",
+    slug: "bustandeen",
+    title: "Bustandeen",
     kind: "software",
     summary:
-      "Full-stack Islamic productivity app — zikr, salat, fasting and Quran habit tracking with streaks, goals, and timezone-aware analytics.",
-    tags: ["React", "Express", "MongoDB", "Firebase Auth", "Zustand", "React Query"],
-    live: "https://ihsan-web-app-main.vercel.app",
-    github: "https://github.com/isttiiak/ihsan-web-app",
+      "Free, ad-free Islamic worship companion — salat with kaza tracking, zikr, Quran reading and hifz, fiqh-aware fasting, prayer times and Qibla. Offline-first PWA in English and Bangla.",
+    tags: ["React", "TypeScript", "Express", "MongoDB", "Firebase Auth", "PWA"],
+    live: "https://bustandeen.com",
+    github: "https://github.com/isttiiak/bustandeen-web-app",
     caseStudy: true,
     metrics: [
-      { value: "4", label: "ibadah trackers" },
-      { value: "0ms", label: "config for timezones" },
+      { value: "300+", label: "releases" },
+      { value: "220+", label: "test files" },
+      { value: "2", label: "languages" },
     ],
-    year: "2025",
+    year: "2025–26",
   },
   {
     slug: "adaptive-rating-thesis",
@@ -116,7 +117,7 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((p) =>
-  ["fintrack", "mercari-price-suggestion", "ihsan", "cinetrack"].includes(p.slug)
+  ["fintrack", "mercari-price-suggestion", "bustandeen", "cinetrack"].includes(p.slug)
 );
 
 export const dataProjects = projects.filter((p) => p.kind === "data");

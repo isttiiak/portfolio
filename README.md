@@ -91,7 +91,7 @@ To show it in the **featured horizontal gallery**, add its slug to `featuredProj
 
 ```ts
 export const featuredProjects = projects.filter((p) =>
-  ["fintrack", "mercari-price-suggestion", "ihsan", "my-new-app"].includes(p.slug)
+  ["fintrack", "mercari-price-suggestion", "bustandeen", "my-new-app"].includes(p.slug)
 );
 ```
 
