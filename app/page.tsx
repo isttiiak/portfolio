@@ -9,15 +9,18 @@ import { GithubActivity } from "@/components/sections/GithubActivity";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { getDocSlugs } from "@/lib/mdx";
+import { getPublicRepoCount } from "@/lib/github";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const repoCount = await getPublicRepoCount();
+
   return (
     <>
       <Navbar />
       <main id="main">
         <Hero />
-        <About />
-        <FeaturedProjects caseStudySlugs={getDocSlugs("projects")} />
+        <About repoCount={repoCount} />
+        <FeaturedProjects caseStudySlugs={getDocSlugs("projects")} repoCount={repoCount} />
         <DataWork />
         <TechStack />
         <Timeline />

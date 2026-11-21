@@ -94,7 +94,13 @@ function ProjectCard({ project, hasCaseStudy }: { project: Project; hasCaseStudy
   );
 }
 
-export function FeaturedProjects({ caseStudySlugs }: { caseStudySlugs: string[] }) {
+export function FeaturedProjects({
+  caseStudySlugs,
+  repoCount,
+}: {
+  caseStudySlugs: string[];
+  repoCount: number;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -159,7 +165,7 @@ export function FeaturedProjects({ caseStudySlugs }: { caseStudySlugs: string[] 
               <ArrowUpRightIcon width={24} height={24} />
             </span>
             <span className="font-mono text-sm text-stone transition-colors group-hover:text-cream">
-              all {site.publicRepos} repos on GitHub
+              all {repoCount} repos on GitHub
             </span>
           </a>
         </div>

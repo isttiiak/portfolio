@@ -3,7 +3,8 @@ import { SectionReveal } from "@/components/fx/SectionReveal";
 import { CountUp } from "@/components/fx/CountUp";
 import { counters } from "@/lib/data/timeline";
 
-export function About() {
+// repoCount comes from GitHub (daily) and replaces the fallback in the counters data
+export function About({ repoCount }: { repoCount: number }) {
   return (
     <section id="about" className="relative mx-auto max-w-7xl scroll-mt-24 px-6 py-28 sm:px-10">
       <SectionHeading index="01" eyebrow="about" title="Engineer across the stack and the pipeline" />
@@ -44,7 +45,11 @@ export function About() {
             <SectionReveal key={counter.label} delay={0.1 + i * 0.08}>
               <div className="rounded-xl border border-line bg-char p-6 transition-colors hover:border-ember/50">
                 <p className="font-display text-4xl font-bold text-cream">
-                  <CountUp value={counter.value} suffix={counter.suffix} className="text-gradient-warm" />
+                  <CountUp
+                    value={counter.id === "publicRepos" ? repoCount : counter.value}
+                    suffix={counter.suffix}
+                    className="text-gradient-warm"
+                  />
                 </p>
                 <p className="mt-2 text-[13px] leading-snug text-stone">{counter.label}</p>
               </div>

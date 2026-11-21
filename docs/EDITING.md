@@ -13,7 +13,7 @@ Run `npm run build` before pushing structural changes: MDX frontmatter typos sur
 
 | I want to change… | Edit |
 | --- | --- |
-| Name, roles, email, links, tagline, public repo count | `lib/data/site.ts` |
+| Name, roles, email, links, tagline | `lib/data/site.ts` |
 | Project cards | `lib/data/projects.ts` |
 | About-section paragraphs | `components/sections/About.tsx` |
 | Stat counters and the journey timeline | `lib/data/timeline.ts` |
@@ -91,7 +91,7 @@ Intro paragraph, then `##` sections.
 ## Timeline, counters and skills
 
 - `lib/data/timeline.ts`: `timeline` is the journey section (`accent: true` gives the glowing dot); `counters` are the four About stats.
-- The public repo count is `publicRepos` in `lib/data/site.ts` and feeds both the counter and the gallery link.
+- The public repo count updates itself: the home page fetches it from GitHub once a day (`lib/github.ts`). `publicRepos` in `lib/data/site.ts` is only the fallback if GitHub is unreachable.
 - `lib/data/skills.ts`: `skillGroups` is the four-card grid, `marqueeSkills` the scrolling strip.
 
 ## The CV (LaTeX)

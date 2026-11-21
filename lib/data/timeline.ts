@@ -55,9 +55,16 @@ export const timeline: TimelineItem[] = [
   },
 ];
 
-export const counters = [
+export interface Counter {
+  id?: "publicRepos"; // values with an id are replaced by live data on the page
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+export const counters: Counter[] = [
   { value: 3, suffix: "", label: "products live in production" },
-  { value: site.publicRepos, suffix: "", label: "public repositories" },
+  { id: "publicRepos", value: site.publicRepos, suffix: "", label: "public repositories" },
   { value: 10, suffix: "+", label: "AI features shipped" },
   { value: 43, suffix: "K", label: "records in largest dataset" },
 ];

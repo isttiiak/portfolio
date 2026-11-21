@@ -15,6 +15,6 @@ export const site = {
   telegram: "https://t.me/iscoffey",
   telegramHandle: "@iscoffey",
   resume: "/istiak-islam-resume.pdf",
-  // Public GitHub repo count, shown in About and the projects gallery; update when it changes
-  publicRepos: 82,
+  // Fallback only: the live count is fetched from GitHub daily (lib/github.ts)
+  publicRepos: 83,
 } as const;
