@@ -3,7 +3,7 @@ import path from "path";
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/data/site";
 
-export const alt = `${site.name} — Software Engineer · Data Engineer`;
+export const alt = `${site.name} | Software Engineer · Data Engineer`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -55,7 +55,7 @@ export default async function OgImage() {
               maxWidth: 680,
             }}
           >
-            Full-stack products and end-to-end data pipelines — React apps with AI features, ML models
+            Full-stack products and end-to-end data pipelines: React apps with AI features, ML models
             served over FastAPI.
           </div>
           <div style={{ display: "flex", gap: 28, marginTop: 40, fontSize: 22, color: "#78716c" }}>

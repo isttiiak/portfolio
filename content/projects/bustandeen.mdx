@@ -1,47 +1,47 @@
 ---
 title: "Bustandeen"
-description: "A free, ad-free Islamic worship companion — salat with kaza tracking, zikr, Quran reading and hifz, fiqh-aware fasting, prayer times and Qibla. An installable, offline-first PWA in English and Bangla."
+description: "A free, ad-free Islamic worship companion: salat with kaza tracking, zikr, Quran reading and hifz, fiqh-aware fasting, prayer times and Qibla. An installable, offline-first PWA in English and Bangla."
 year: "2025–26"
 role: "Solo developer"
 stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "TanStack Query", "PWA (Workbox)", "Node.js", "Express 5", "MongoDB", "Firebase Auth", "Zod", "i18next"]
 live: "https://bustandeen.com"
 github: "https://github.com/isttiiak/bustandeen-web-app"
-order: 3
+order: 1
 architecture:
   - layer: "Frontend"
     tech: "React 18 + TypeScript + Vite + Tailwind CSS"
   - layer: "Client & server state"
     tech: "Zustand + TanStack Query (cache persisted to IndexedDB)"
   - layer: "Offline"
-    tech: "PWA — custom Workbox service worker"
+    tech: "PWA: custom Workbox service worker"
   - layer: "Backend"
     tech: "Express 5 + TypeScript, every write validated with Zod"
   - layer: "Database"
     tech: "MongoDB Atlas (Mongoose)"
   - layer: "Authentication"
-    tech: "Firebase Auth — ID token verified per request; TOTP 2FA for admins"
+    tech: "Firebase Auth: ID token verified per request; TOTP 2FA for admins"
   - layer: "AI"
-    tech: "Groq — optional encouragement companion, never a source of rulings"
+    tech: "Groq: optional encouragement companion, never a source of rulings"
   - layer: "Hosting"
-    tech: "Vercel — static site + one serverless API function"
+    tech: "Vercel: static site + one serverless API function"
   - layer: "SEO"
     tech: "SSR-prerendered pages in English, Bangla and Arabic"
 ---
 
 ## The problem
 
-Habit trackers are everywhere, but none of them understand the Muslim day. A missed prayer isn't just a broken streak — it becomes *kaza* that is owed. Fasting has days that are forbidden and days that are disliked. Isha prayed after midnight still belongs to the day before. And worship apps that do exist are often full of ads, harvest location data, or quote hadith without a source.
+Habit trackers are everywhere, but none of them understand the Muslim day. A missed prayer isn't just a broken streak; it becomes *kaza* that is owed. Fasting has days that are forbidden and days that are disliked. Isha prayed after midnight still belongs to the day before. And worship apps that do exist are often full of ads, harvest location data, or quote hadith without a source.
 
 Bustandeen started in October 2025 as **Ihsan**, a small zikr and salat tracker, and grew into a full worship companion under its new name. The goal stayed the same: one calm, free, private place for daily worship, where every religious claim can be checked.
 
 ## Key features
 
-- **Salat tracker** — five daily prayers (done / kaza / missed), sunnah and nafl, congregation, and an automatic kaza debt that is paid down as prayers are made up
-- **Zikr counter** — tap counting that works offline, daily goals, a verified adhkar library, and streaks with grace days
-- **Quran** — verse-by-verse reader with tafsir and several reciters, khatam progress, and **hifz** with spaced repetition
+- **Salat tracker**: five daily prayers (done / kaza / missed), sunnah and nafl, congregation, and an automatic kaza debt that is paid down as prayers are made up
+- **Zikr counter**: tap counting that works offline, daily goals, a verified adhkar library, and streaks with grace days
+- **Quran**: verse-by-verse reader with tafsir and several reciters, khatam progress, and **hifz** with spaced repetition
 - **Fasting** that follows fiqh: qada, kaffarah, vows and every sunnah fast; forbidden days are blocked and disliked ones warned, each rule cited
-- **Ramadan home** — suhoor and iftar countdowns, tarawih, and Ramadan analytics
-- **Prayer times and Qibla** calculated on the device — location never leaves the browser
+- **Ramadan home**: suhoor and iftar countdowns, tarawih, and Ramadan analytics
+- **Prayer times and Qibla** calculated on the device; location never leaves the browser
 - **Travel mode** (shortening and combining prayers, both madhab positions) and a private, encrypted cycle tracker for sisters
 - **Every Quran and hadith reference** links to quran.com or sunnah.com with its number and grade
 - English and Bangla, light and dark themes, installable on any phone or desktop
@@ -50,14 +50,14 @@ Bustandeen started in October 2025 as **Ihsan**, a small zikr and salat tracker,
 
 - Live in production at **bustandeen.com**, free and ad-free
 - **300+ versioned releases** documented in a public changelog
-- **220+ test files** — Jest with an in-memory MongoDB on the backend, Vitest on the frontend — plus lint, type-check, format and build gates on every push in CI
+- **220+ test files**: Jest with an in-memory MongoDB on the backend and Vitest on the frontend, plus lint, type-check, format and build gates on every push in CI
 - Prerendered SEO pages (prayer times and Qibla per city, Ramadan calendars, duas) in three languages
 
 ## Challenges
 
 **A worship day, not a clock day.** The app's day turns at Fajr by default (or midnight or Maghrib, the user's choice), so a late Isha or suhoor lands on the right day. Every date the client sends comes from one tracking-day function; the server clock never decides what "today" means. Getting this wrong is subtle: a new account west of UTC that opened the app in the evening was losing its first day of missed prayers, because the kaza record started from the server's UTC date. It now starts from the user's own day, with tests pinned at UTC−5 and UTC+6.
 
-**Counting without losing taps.** Zikr is the hottest write path. Taps increment instantly in a Zustand store, survive reloads, and flush to the API in debounced batches. Each batch carries an operation id, so a retried batch is replayed safely instead of counted twice, and server writes are atomic MongoDB updates (`$inc`) — never read-modify-save. Renaming a zikr moves its name, lifetime total and every daily bucket in one transaction.
+**Counting without losing taps.** Zikr is the hottest write path. Taps increment instantly in a Zustand store, survive reloads, and flush to the API in debounced batches. Each batch carries an operation id, so a retried batch is replayed safely instead of counted twice, and server writes are atomic MongoDB updates (`$inc`), never read-modify-save. Renaming a zikr moves its name, lifetime total and every daily bucket in one transaction.
 
 **Offline-first without stale worship logs.** A custom service worker precaches the app shell and Quran text, and the React Query cache is persisted to IndexedDB so the app opens with the last known data. API responses are never cached. Prayer logs made offline go into an outbox and replay when the connection returns.
 
@@ -69,7 +69,7 @@ Bustandeen started in October 2025 as **Ihsan**, a small zikr and salat tracker,
 
 ## What I learned
 
-- **Let the client own time.** For a habit app with users in every timezone, the user's own day has to be authoritative — and it needs tests at timezones other than your own
+- **Let the client own time.** For a habit app with users in every timezone, the user's own day has to be authoritative, and it needs tests at timezones other than your own
 - **Idempotency and atomic writes** are the default for any counter that can be retried or raced
 - **Offline is a product decision**, not a checkbox: decide what may be stale (Quran text) and what must never be (worship logs)
-- Running a real product means a changelog, a test suite and CI — that discipline is what made 300+ releases possible without breaking people's records
+- Running a real product means a changelog, a test suite and CI; that discipline is what made 300+ releases possible without breaking people's records

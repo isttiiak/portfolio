@@ -41,7 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local source material (CVs) — never commit
+# local source material (CVs), never commit
 myinfo/
 .DS_Store
 
@@ -55,5 +55,5 @@ cv/src/*.fdb_latexmk
 cv/src/*.synctex.gz
 cv/src/*.pdf
 
-# local dev context for Claude Code — never commit
+# local dev context for Claude Code, never commit
 CLAUDE.md

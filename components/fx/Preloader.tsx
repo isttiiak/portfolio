@@ -41,7 +41,7 @@ export function Preloader() {
     };
     raf = requestAnimationFrame(step);
 
-    // Backgrounded mid-intro: drop the overlay instantly — its exit
+    // Backgrounded mid-intro: drop the overlay instantly; its exit
     // animation could never play in a hidden tab
     const onVisibility = () => {
       if (document.visibilityState === "hidden") {

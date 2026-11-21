@@ -13,11 +13,28 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "bustandeen",
+    title: "Bustandeen",
+    kind: "software",
+    summary:
+      "Free, ad-free Islamic worship companion: salat with kaza tracking, zikr, Quran reading and hifz, fiqh-aware fasting, prayer times and Qibla. Offline-first PWA in English and Bangla.",
+    tags: ["React", "TypeScript", "Express", "MongoDB", "Firebase Auth", "PWA"],
+    live: "https://bustandeen.com",
+    github: "https://github.com/isttiiak/bustandeen-web-app",
+    caseStudy: true,
+    metrics: [
+      { value: "300+", label: "releases" },
+      { value: "220+", label: "test files" },
+      { value: "2", label: "languages" },
+    ],
+    year: "2025–26",
+  },
+  {
     slug: "fintrack",
     title: "FinTrack",
     kind: "software",
     summary:
-      "Open-source personal finance app with expense tracking, lent/debt ledger, and investment portfolio — plus 10 AI-powered features running on Groq.",
+      "Open-source personal finance app with expense tracking, lent/debt ledger, and investment portfolio, plus 10 AI-powered features running on Groq.",
     tags: ["React 19", "TypeScript", "Supabase", "TanStack", "Groq AI", "Framer Motion"],
     live: "https://fin-track-eight-blue.vercel.app",
     github: "https://github.com/isttiiak/FinTrack",
@@ -33,7 +50,7 @@ export const projects: Project[] = [
     title: "Mercari Price Suggestion",
     kind: "data",
     summary:
-      "End-to-end ML pipeline that predicts fair listing prices from title, description, category, and brand — NLP feature engineering, LightGBM, FastAPI serving.",
+      "End-to-end ML pipeline that predicts fair listing prices from title, description, category, and brand, using NLP feature engineering, LightGBM, and FastAPI serving.",
     tags: ["Python", "LightGBM", "NLP", "FastAPI", "Pandas", "Scikit-learn"],
     github: "https://github.com/isttiiak/mercari-price-suggestion",
     caseStudy: true,
@@ -45,28 +62,11 @@ export const projects: Project[] = [
     year: "2026",
   },
   {
-    slug: "bustandeen",
-    title: "Bustandeen",
-    kind: "software",
-    summary:
-      "Free, ad-free Islamic worship companion — salat with kaza tracking, zikr, Quran reading and hifz, fiqh-aware fasting, prayer times and Qibla. Offline-first PWA in English and Bangla.",
-    tags: ["React", "TypeScript", "Express", "MongoDB", "Firebase Auth", "PWA"],
-    live: "https://bustandeen.com",
-    github: "https://github.com/isttiiak/bustandeen-web-app",
-    caseStudy: true,
-    metrics: [
-      { value: "300+", label: "releases" },
-      { value: "220+", label: "test files" },
-      { value: "2", label: "languages" },
-    ],
-    year: "2025–26",
-  },
-  {
     slug: "adaptive-rating-thesis",
     title: "Adaptive Rating System",
     kind: "data",
     summary:
-      "Undergraduate thesis: Bayesian-average product ratings with exponential time decay and AI sentiment extraction — shipped as a Chrome extension for real e-commerce pages.",
+      "Undergraduate thesis: Bayesian-average product ratings with exponential time decay and AI sentiment extraction, shipped as a Chrome extension for real e-commerce pages.",
     tags: ["Bayesian statistics", "Sentiment analysis", "EDA", "Chrome Extension", "JavaScript"],
     github: "https://github.com/isttiiak/e-commerce-extension",
     caseStudy: true,
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     title: "Brain Stroke Classification",
     kind: "data",
     summary:
-      "Classified 43,400 clinical records under heavy class imbalance — SMOTE resampling, 4 classifiers compared with 10-fold cross-validation.",
+      "Classified 43,400 clinical records under heavy class imbalance: SMOTE resampling, with 4 classifiers compared with 10-fold cross-validation.",
     tags: ["Python", "Scikit-learn", "SMOTE", "Random Forest", "EDA"],
     github: "https://github.com/RejwanShafi25/Brain-stroke-analysis-and-classification--CSE422-Project",
     caseStudy: false,
@@ -108,7 +108,7 @@ export const projects: Project[] = [
     title: "cityNet ISP",
     kind: "software",
     summary:
-      "ISP customer & billing management system — subscriptions, complaints, payment tracking across a client-server MERN architecture.",
+      "ISP customer & billing management system: subscriptions, complaints, payment tracking across a client-server MERN architecture.",
     tags: ["React", "Node.js", "MongoDB", "Firebase Auth"],
     github: "https://github.com/isttiiak/cityNet-isp",
     caseStudy: false,
@@ -117,7 +117,7 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((p) =>
-  ["fintrack", "mercari-price-suggestion", "bustandeen", "cinetrack"].includes(p.slug)
+  ["bustandeen", "fintrack", "mercari-price-suggestion", "cinetrack"].includes(p.slug)
 );
 
 export const dataProjects = projects.filter((p) => p.kind === "data");

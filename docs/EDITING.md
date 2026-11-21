@@ -7,7 +7,7 @@ No local setup? Press `.` on the GitHub repo to open github.dev, a browser edito
 git add -A && git commit -m "describe the change" && git push
 ```
 
-Run `npm run build` before pushing structural changes — MDX frontmatter typos surface at build time.
+Run `npm run build` before pushing structural changes: MDX frontmatter typos surface at build time.
 
 ## Where everything lives
 
@@ -33,7 +33,7 @@ Add an object to the `projects` array in `lib/data/projects.ts`:
   kind: "software",                // "data" projects also appear in the Data & ML section
   summary: "One or two sentences shown on the card.",
   tags: ["Next.js", "PostgreSQL", "Docker"],
-  live: "https://my-new-app.vercel.app",   // optional — shows the LIVE badge
+  live: "https://my-new-app.vercel.app",   // optional, shows the LIVE badge
   github: "https://github.com/isttiiak/my-new-app",
   caseStudy: true,                 // links the card to /projects/<slug> if the .mdx exists
   metrics: [{ value: "1.2K", label: "users" }],   // optional
@@ -90,9 +90,9 @@ Intro paragraph, then `##` sections.
 
 ## Timeline, counters and skills
 
-- `lib/data/timeline.ts` — `timeline` is the journey section (`accent: true` gives the glowing dot); `counters` are the four About stats.
+- `lib/data/timeline.ts`: `timeline` is the journey section (`accent: true` gives the glowing dot); `counters` are the four About stats.
 - The public repo count is `publicRepos` in `lib/data/site.ts` and feeds both the counter and the gallery link.
-- `lib/data/skills.ts` — `skillGroups` is the four-card grid, `marqueeSkills` the scrolling strip.
+- `lib/data/skills.ts`: `skillGroups` is the four-card grid, `marqueeSkills` the scrolling strip.
 
 ## The CV (LaTeX)
 
@@ -104,7 +104,7 @@ cd cv && make
 
 `make` builds both PDFs into `cv/` and copies the no-photo version to `public/istiak-islam-resume.pdf`.
 It needs a TeX install (`brew install --cask mactex-no-gui`, then open a new terminal); without one,
-upload `cv/` to [overleaf.com](https://overleaf.com). If it fails, the error names a line —
+upload `cv/` to [overleaf.com](https://overleaf.com). If it fails, the error names a line,
 usually an unescaped `%`, `$`, `&` or `#` (write `\%`, `\$`, `\&`, `\#`).
 
 ## Services
@@ -113,4 +113,4 @@ usually an unescaped `%`, `$`, `&` or `#` (write `\%`, `\$`, `\&`, `\#`).
 - **Contact form:** set `NEXT_PUBLIC_WEB3FORMS_KEY` (free key from [web3forms.com](https://web3forms.com)) in Vercel's environment variables. Without it the form opens the visitor's mail app.
 - **Analytics (optional):** set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to a GA4 `G-…` ID; the tag stays off while it's unset.
 - **Search Console:** add the `https://istiak.is-a.dev` property at [search.google.com/search-console](https://search.google.com/search-console) and submit `https://istiak.is-a.dev/sitemap.xml`.
-- **Domain:** `url` in `lib/data/site.ts` drives the canonical URL, sitemap and social cards — update it if the domain changes.
+- **Domain:** `url` in `lib/data/site.ts` drives the canonical URL, sitemap and social cards; update it if the domain changes.

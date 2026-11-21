@@ -14,16 +14,16 @@ export function About() {
             <p>
               I&apos;m a computer science graduate from{" "}
               <span className="text-cream">BRAC University</span>{" "}based in Dhaka, working at the
-              intersection of software engineering and data. I like shipping things end to end — the
+              intersection of software engineering and data. I like shipping things end to end: the
               React frontend, the API behind it, and the data pipeline underneath.
             </p>
           </SectionReveal>
           <SectionReveal delay={0.1}>
             <p>
               On the software side, I&apos;ve built and deployed{" "}
-              <span className="text-cream">three products running live in production</span>{" "}— a
-              finance app with an AI layer, an Islamic productivity platform, and a watchlist tracker
-              — all on free-tier infrastructure that I architected to stay fast and reliable.
+              <span className="text-cream">three products running live in production</span>: a
+              finance app with an AI layer, an Islamic worship companion, and a watchlist tracker,
+              all on free-tier infrastructure that I architected to stay fast and reliable.
             </p>
           </SectionReveal>
           <SectionReveal delay={0.2}>
@@ -32,7 +32,7 @@ export function About() {
               <span className="text-cream">Bayesian adaptive rating system</span>{" "}for e-commerce, and
               I completed the government-backed{" "}
               <span className="text-cream">Certification in Data Science (ITS 507)</span>{" "}at BRAC
-              University in 2026 — admitted through a competitive national exam — covering advanced
+              University in 2026, admitted through a competitive national exam, covering advanced
               ML, big data, data pipelines, and NLP. My capstone took a Kaggle-scale NLP regression problem from raw data to a served
               FastAPI model.
             </p>

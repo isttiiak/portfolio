@@ -1,12 +1,12 @@
 ---
 title: "FinTrack"
-description: "Personal finance management with an AI layer — expense tracking, lent/debt ledger, and investment portfolio, built for the Bangladeshi context."
+description: "Personal finance management with an AI layer: expense tracking, lent/debt ledger, and investment portfolio, built for the Bangladeshi context."
 year: "2025"
 role: "Solo developer"
 stack: ["React 19", "TypeScript", "Supabase (PostgreSQL)", "TanStack Router", "TanStack Query", "Zustand", "Framer Motion", "Groq AI"]
 live: "https://fin-track-eight-blue.vercel.app"
 github: "https://github.com/isttiiak/FinTrack"
-order: 1
+order: 2
 architecture:
   - layer: "Frontend"
     tech: "React 19 + TypeScript + Tailwind CSS"
@@ -15,7 +15,7 @@ architecture:
   - layer: "Client state"
     tech: "Zustand"
   - layer: "Backend & database"
-    tech: "Supabase — PostgreSQL with Row Level Security"
+    tech: "Supabase: PostgreSQL with Row Level Security"
   - layer: "AI layer"
     tech: "Groq API (llama-3.1-8b-instant)"
   - layer: "Hosting"
@@ -24,28 +24,28 @@ architecture:
 
 ## The problem
 
-Most finance apps are built for Western banking rails. In Bangladesh, a huge share of personal finance happens informally — money lent to friends, family debts, cash expenses. I wanted one app that treats the **lent/debt ledger** as a first-class citizen next to expenses and investments, and is fully self-hostable so nobody has to trust a third party with financial data.
+Most finance apps are built for Western banking rails. In Bangladesh, a huge share of personal finance happens informally: money lent to friends, family debts, cash expenses. I wanted one app that treats the **lent/debt ledger** as a first-class citizen next to expenses and investments, and is fully self-hostable so nobody has to trust a third party with financial data.
 
 ## Key features
 
 - **Expense tracking** with categories, monthly budgets, and spending breakdowns
-- **Lent/debt ledger** — track money lent to and borrowed from people, with settle-up history
+- **Lent/debt ledger**: track money lent to and borrowed from people, with settle-up history
 - **Investment portfolio** management alongside day-to-day finances
 - **10 AI-powered features** via Groq: smart expense categorisation from free text, anomaly detection on spending, weekly digest, budget analysis, natural-language chat over your own data, and debt payoff strategy
-- **Row Level Security** — every table enforces per-user isolation at the database layer, not in app code
-- **Data safety** — full Excel/CSV export, CSV import with column-mapping preview, soft-delete everywhere
+- **Row Level Security**: every table enforces per-user isolation at the database layer, not in app code
+- **Data safety**: full Excel/CSV export, CSV import with column-mapping preview, soft-delete everywhere
 - Fully **open source and self-hostable** with a single Supabase project
 
 ## Challenges
 
-**Grounding the AI cheaply.** Sending raw transaction rows to an LLM is slow, expensive, and leaks context-window space. Every AI feature instead receives a compact, pre-aggregated summary of the user's data — keeping prompts small and fast enough to run on Groq's free tier without degrading answer quality.
+**Grounding the AI cheaply.** Sending raw transaction rows to an LLM is slow, expensive, and leaks context-window space. Every AI feature instead receives a compact, pre-aggregated summary of the user's data, keeping prompts small and fast enough to run on Groq's free tier without degrading answer quality.
 
-**Trusting the database, not the code.** Financial data demands isolation guarantees stronger than "the API checks the user ID." Writing PostgreSQL Row Level Security policies for every table — including edge cases like shared settle-ups — meant learning to think of authorization as schema, not middleware.
+**Trusting the database, not the code.** Financial data demands isolation guarantees stronger than "the API checks the user ID." Writing PostgreSQL Row Level Security policies for every table, including edge cases like shared settle-ups, meant learning to think of authorization as schema, not middleware.
 
 **Import without disasters.** Real users import messy CSVs from other apps. The importer shows a column-mapping preview before writing anything, and soft-delete means no first-click data loss anywhere in the app.
 
 ## What I learned
 
 - Designing **prompt pipelines for free-tier budgets**: aggregation-first context beats raw-data dumps
-- **RLS-first schema design** — pushing authorization into the database catches whole classes of bugs at the source
+- **RLS-first schema design**: pushing authorization into the database catches whole classes of bugs at the source
 - React 19 + TanStack Router patterns for fully type-safe navigation and data loading

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { prefersReducedMotion } from "@/lib/motion";
 
-const CHARS = "!<>-_\\/[]{}—=+*^?#$01";
+const CHARS = "!<>-_\\/[]{}~=+*^?#$01";
 
 interface TextScrambleProps {
   text: string;

@@ -1,14 +1,14 @@
 ---
 title: "Mercari Price Suggestion"
-description: "End-to-end machine learning pipeline that predicts fair marketplace prices from listing text — capstone for the BRACU–SICIP Data Science certificate."
+description: "End-to-end machine learning pipeline that predicts fair marketplace prices from listing text; capstone for the BRACU–SICIP Data Science certificate."
 year: "2026"
-role: "Solo — full pipeline"
+role: "Solo, full pipeline"
 stack: ["Python", "Pandas", "Scikit-learn", "LightGBM", "NLP (TF-IDF)", "FastAPI"]
 github: "https://github.com/isttiiak/mercari-price-suggestion"
-order: 2
+order: 3
 architecture:
   - layer: "Data"
-    tech: "Kaggle Mercari dataset — 1.4M+ listings"
+    tech: "Kaggle Mercari dataset: 1.4M+ listings"
   - layer: "Processing"
     tech: "Pandas + scikit-learn sparse pipeline"
   - layer: "Features"
@@ -23,14 +23,14 @@ architecture:
 
 ## The problem
 
-Mercari is Japan's largest community-powered marketplace. Sellers constantly misprice listings: overprice and the item never sells, underprice and money is left on the table. The task — from the Kaggle Mercari Price Suggestion Challenge — is **large-scale regression with NLP**: predict a fair price from nothing but the listing's title, description, category, brand, condition, and shipping flag.
+Mercari is Japan's largest community-powered marketplace. Sellers constantly misprice listings: overprice and the item never sells, underprice and money is left on the table. The task, from the Kaggle Mercari Price Suggestion Challenge, is **large-scale regression with NLP**: predict a fair price from nothing but the listing's title, description, category, brand, condition, and shipping flag.
 
-Evaluation metric: **RMSLE** (root mean squared logarithmic error), which punishes relative error — being $5 off on a $10 item is much worse than on a $200 item.
+Evaluation metric: **RMSLE** (root mean squared logarithmic error), which punishes relative error: being $5 off on a $10 item is much worse than on a $200 item.
 
 ## Key features
 
 - **Complete reproducible pipeline**: EDA → cleaning → feature engineering → model comparison → serving, not a single notebook
-- **Sparse end-to-end**: TF-IDF over title + description produces a wide sparse matrix kept sparse through every stage — the whole pipeline trains on a laptop
+- **Sparse end-to-end**: TF-IDF over title + description produces a wide sparse matrix kept sparse through every stage, so the whole pipeline trains on a laptop
 - **Two-model comparison** with honest baselines: Ridge regression, then LightGBM on identical features and splits
 - **FastAPI serving** with an inference-time preprocessing module that exactly mirrors the training pipeline
 - Serialised model + encoders shipped together, so the API is one `uvicorn` command from a prediction
@@ -48,14 +48,14 @@ The selected LightGBM model improves **25.5% over the Ridge baseline**, with a m
 
 ## Challenges
 
-**Scale on a laptop.** 1.4M listings with TF-IDF features explode into a matrix that would need a cluster if densified — one careless `.toarray()` call away from an out-of-memory crash. Keeping every transformer sparse-aware was the difference between "runs locally" and "needs infrastructure."
+**Scale on a laptop.** 1.4M listings with TF-IDF features explode into a matrix that would need a cluster if densified, one careless `.toarray()` call away from an out-of-memory crash. Keeping every transformer sparse-aware was the difference between "runs locally" and "needs infrastructure."
 
 **Respecting the metric.** RMSLE means training on `log1p(price)` and inverting at prediction time; getting the transform boundary wrong silently corrupts every downstream number. The evaluation harness applies the inverse in exactly one place.
 
-**Train/serve skew.** The most common failure mode of deployed ML is inference preprocessing drifting from training. Every transformation lives in one shared module imported by both paths — there is no second implementation to drift.
+**Train/serve skew.** The most common failure mode of deployed ML is inference preprocessing drifting from training. Every transformation lives in one shared module imported by both paths, so there is no second implementation to drift.
 
 ## What I learned
 
-- The metric shapes the whole pipeline — target transforms, validation, and model choice all follow from RMSLE
+- The metric shapes the whole pipeline: target transforms, validation, and model choice all follow from RMSLE
 - **Baselines earn their keep**: without Ridge, "0.465" is just a number; against it, it's a defensible 25.5% lift
-- The unglamorous serving layer is the real job — mirror-the-pipeline discipline matters more than model choice
+- The unglamorous serving layer is the real job: mirror-the-pipeline discipline matters more than model choice

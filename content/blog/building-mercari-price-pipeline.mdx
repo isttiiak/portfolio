@@ -1,28 +1,28 @@
 ---
 title: "Building an end-to-end price-prediction pipeline"
-description: "What I learned taking the Kaggle Mercari challenge from raw CSV to a served model — sparse matrices, RMSLE, and why the boring parts matter."
+description: "What I learned taking the Kaggle Mercari challenge from raw CSV to a served model: sparse matrices, RMSLE, and why the boring parts matter."
 date: "2026-06-18"
 tags: ["machine learning", "data engineering", "python"]
 ---
 
-Most ML tutorials end at `model.fit()`. The Mercari Price Suggestion challenge — which I built as my capstone for the BRACU–SICIP Data Science certificate — taught me that everything interesting happens on either side of that line.
+Most ML tutorials end at `model.fit()`. The Mercari Price Suggestion challenge, which I built as my capstone for the BRACU–SICIP Data Science certificate, taught me that everything interesting happens on either side of that line.
 
 ## Respect the metric
 
-The challenge uses RMSLE, not RMSE. That single letter changes the whole project: logarithmic error means *relative* mistakes matter. Being $5 off on a $10 phone case is a disaster; being $5 off on a $200 jacket is noise. The first practical consequence is that you train on `log1p(price)` and invert at prediction time — and suddenly your right-skewed target looks almost normal.
+The challenge uses RMSLE, not RMSE. That single letter changes the whole project: logarithmic error means *relative* mistakes matter. Being $5 off on a $10 phone case is a disaster; being $5 off on a $200 jacket is noise. The first practical consequence is that you train on `log1p(price)` and invert at prediction time, and suddenly your right-skewed target looks almost normal.
 
 ## Text is the feature
 
-The dataset gives you almost nothing structured: a three-level category, a brand (often missing), condition, shipping flag. The signal lives in the **title and description**. TF-IDF over both produced a wide, extremely sparse matrix — the kind that makes pandas fall over if you ever call `.toarray()`.
+The dataset gives you almost nothing structured: a three-level category, a brand (often missing), condition, shipping flag. The signal lives in the **title and description**. TF-IDF over both produced a wide, extremely sparse matrix, the kind that makes pandas fall over if you ever call `.toarray()`.
 
 Keeping the whole pipeline sparse end-to-end was the difference between "runs on my laptop" and "needs a cluster." Scikit-learn's sparse-aware transformers and LightGBM's native sparse support carried it.
 
 ## Baselines earn their keep
 
-Ridge regression on the same features hit RMSLE 0.6246. LightGBM brought it to **0.4650 — a 25.5% improvement** — with MAE of $10.44. Without the linear baseline I'd have no idea whether 0.465 was good; against it, the gradient-boosting lift is a concrete, defensible number for the model card.
+Ridge regression on the same features hit RMSLE 0.6246. LightGBM brought it to **0.4650, a 25.5% improvement**, with MAE of $10.44. Without the linear baseline I'd have no idea whether 0.465 was good; against it, the gradient-boosting lift is a concrete, defensible number for the model card.
 
 ## The unglamorous 20% is the job
 
-The part nobody puts in notebooks: serving. I serialised the model with its encoders and built a FastAPI endpoint whose preprocessing module **exactly mirrors** the training pipeline. Every transformation exists once, imported by both paths. The moment training and inference preprocessing drift apart, your production predictions silently rot — and no metric on a dashboard will tell you why.
+The part nobody puts in notebooks: serving. I serialised the model with its encoders and built a FastAPI endpoint whose preprocessing module **exactly mirrors** the training pipeline. Every transformation exists once, imported by both paths. The moment training and inference preprocessing drift apart, your production predictions silently rot, and no metric on a dashboard will tell you why.
 
 That mirror-the-pipeline discipline, more than any model choice, is what I'd carry into a data engineering role.

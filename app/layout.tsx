@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const title = `${site.name} — Software Engineer · Data Engineer`;
+const title = `${site.name} | Software Engineer · Data Engineer`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

@@ -26,12 +26,12 @@ export function Contact() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    // Honeypot — bots fill it, humans never see it
+    // Honeypot: bots fill it, humans never see it
     if (data.get("website")) return;
 
     if (!WEB3FORMS_KEY) {
       const subject = encodeURIComponent(`Portfolio enquiry from ${data.get("name")}`);
-      const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
+      const body = encodeURIComponent(`${data.get("message")}\n\nFrom ${data.get("name")} (${data.get("email")})`);
       window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
       return;
     }
@@ -64,7 +64,7 @@ export function Contact() {
         <SectionReveal>
           <p className="max-w-md text-[15px] leading-relaxed text-stone">
             I&apos;m currently open to <span className="text-cream">software engineering</span>{" "}and{" "}
-            <span className="text-cream">data engineering</span>{" "}roles — full-time, contract, or
+            <span className="text-cream">data engineering</span>{" "}roles: full-time, contract, or
             interesting collaborations. My inbox is always open.
           </p>
 
@@ -186,12 +186,12 @@ export function Contact() {
               </Magnetic>
               {status === "sent" && (
                 <p role="status" className="font-mono text-sm text-amber">
-                  ✓ sent — I&apos;ll reply soon
+                  ✓ sent, I&apos;ll reply soon
                 </p>
               )}
               {status === "error" && (
                 <p role="alert" className="font-mono text-sm text-copper">
-                  something broke — email me directly
+                  something broke, email me directly
                 </p>
               )}
             </div>

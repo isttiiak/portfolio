@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionReveal } from "@/components/fx/SectionReveal";
+import { ArrowUpRightIcon } from "@/components/ui/icons";
 import { timeline } from "@/lib/data/timeline";
 
 export function Timeline() {
@@ -46,6 +47,21 @@ export function Timeline() {
                   </li>
                 ))}
               </ul>
+              {item.link && (
+                <a
+                  href={item.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group mt-4 inline-flex items-center gap-1.5 font-mono text-[13px] text-ember transition-colors hover:text-amber"
+                >
+                  {item.link.label}
+                  <ArrowUpRightIcon
+                    width={14}
+                    height={14}
+                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </a>
+              )}
             </SectionReveal>
           ))}
         </div>

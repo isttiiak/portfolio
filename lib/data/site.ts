@@ -3,9 +3,9 @@ export const site = {
   handle: "isttiiak",
   roles: ["Software Engineer", "Data Engineer", "Full-Stack Developer", "ML Practitioner"],
   tagline:
-    "I build full-stack products and end-to-end data pipelines — from React apps with AI features to ML models served over FastAPI.",
+    "I build full-stack products and end-to-end data pipelines, from React apps with AI features to ML models served over FastAPI.",
   description:
-    "Portfolio of Istiak Islam — software engineer and data engineer from Dhaka, Bangladesh. Full-stack products, machine learning pipelines, and data-driven systems.",
+    "Portfolio of Istiak Islam, software engineer and data engineer from Dhaka, Bangladesh. Full-stack products, machine learning pipelines, and data-driven systems.",
   url: "https://istiak.is-a.dev",
   altUrl: "https://isttiiak.vercel.app",
   location: "Dhaka, Bangladesh",
@@ -15,6 +15,6 @@ export const site = {
   telegram: "https://t.me/iscoffey",
   telegramHandle: "@iscoffey",
   resume: "/istiak-islam-resume.pdf",
-  // Public GitHub repo count, shown in About and the projects gallery — update when it changes
+  // Public GitHub repo count, shown in About and the projects gallery; update when it changes
   publicRepos: 82,
 } as const;

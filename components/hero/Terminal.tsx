@@ -12,11 +12,11 @@ interface Line {
 
 const SCRIPT: Line[] = [
   { prompt: true, text: "whoami" },
-  { prompt: false, text: "istiak islam — dhaka, bangladesh", color: "text-stone" },
+  { prompt: false, text: "istiak islam · dhaka, bangladesh", color: "text-stone" },
   { prompt: true, text: "cat ./focus.txt" },
   { prompt: false, text: "full-stack products · ML pipelines · data systems", color: "text-stone" },
   { prompt: true, text: "./status --now" },
-  { prompt: false, text: "● building — open to SWE & data engineering roles", color: "text-amber" },
+  { prompt: false, text: "● building · open to SWE & data engineering roles", color: "text-amber" },
 ];
 
 export function Terminal() {
@@ -83,7 +83,7 @@ export function Terminal() {
         <span className="h-2.5 w-2.5 rounded-full bg-copper/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber/60" />
         <span className="h-2.5 w-2.5 rounded-full bg-stone/40" />
-        <span className="ml-2 font-mono text-[11px] text-smoke">istiak@dev — zsh</span>
+        <span className="ml-2 font-mono text-[11px] text-smoke">istiak@dev: zsh</span>
       </div>
       <div className="min-h-[172px] px-4 py-3 font-mono text-[13px] leading-relaxed">
         {lines.map((line, i) => (

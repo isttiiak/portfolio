@@ -12,7 +12,7 @@ const warmTheme = {
 };
 
 export function GithubActivity() {
-  // Calendar skeleton is non-deterministic — render client-side only to avoid hydration mismatch
+  // Calendar skeleton is non-deterministic, so render client-side only to avoid hydration mismatch
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 

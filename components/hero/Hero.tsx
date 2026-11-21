@@ -32,7 +32,7 @@ export function Hero() {
             transition={{ delay: base, duration: 0.6 }}
             className="mb-5 font-mono text-sm tracking-[0.2em] text-amber"
           >
-            $ hello_world — I&apos;m
+            $ hello_world, I&apos;m
           </motion.p>
 
           <h1 className="font-display text-[clamp(3rem,9vw,6.5rem)] font-bold leading-[0.95] tracking-tight text-cream">

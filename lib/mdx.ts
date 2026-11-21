@@ -65,7 +65,7 @@ export function hasCaseStudyPage(slug: string): boolean {
 
 /**
  * Format a frontmatter date ("2026-05-10"). Date-only strings parse as UTC midnight,
- * so format in UTC too — otherwise a build west of UTC shows the previous day.
+ * so format in UTC too; otherwise a build west of UTC shows the previous day.
  */
 export function formatDate(date?: string): string {
   if (!date) return "";
