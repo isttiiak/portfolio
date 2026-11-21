@@ -109,7 +109,7 @@ export function Contact() {
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember transition-colors group-hover:border-ember">
                 <TelegramIcon width={18} height={18} />
               </span>
-              <span className="font-mono text-sm">t.me/mobs08 · {site.telegramHandle}</span>
+              <span className="font-mono text-sm">{site.telegram.replace("https://", "")} · {site.telegramHandle}</span>
             </a>
             <div className="flex w-fit items-center gap-4 text-stone">
               <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ember">

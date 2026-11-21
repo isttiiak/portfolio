@@ -60,7 +60,7 @@ export const site = {
   tagline: "I build full-stack products and end-to-end data pipelines…",
   url: "https://istiak.is-a.dev",              // change when you get a custom domain
   email: "isttiiak@gmail.com",
-  telegram: "https://t.me/mobs08",
+  telegram: "https://t.me/iscoffey",
   // …
 } as const;
 ```

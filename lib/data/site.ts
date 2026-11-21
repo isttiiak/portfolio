@@ -12,8 +12,8 @@ export const site = {
   email: "isttiiak@gmail.com",
   github: "https://github.com/isttiiak",
   linkedin: "https://www.linkedin.com/in/isttiiak",
-  telegram: "https://t.me/mobs08",
-  telegramHandle: "@mobs08",
+  telegram: "https://t.me/iscoffey",
+  telegramHandle: "@iscoffey",
   resume: "/istiak-islam-resume.pdf",
   // Public GitHub repo count, shown in About and the projects gallery — update when it changes
   publicRepos: 82,
