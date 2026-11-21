@@ -66,13 +66,13 @@ export const projects: Project[] = [
     title: "Adaptive Rating System",
     kind: "data",
     summary:
-      "Undergraduate thesis: Bayesian-average product ratings with exponential time decay and AI sentiment extraction, shipped as a Chrome extension for real e-commerce pages.",
-    tags: ["Bayesian statistics", "Sentiment analysis", "EDA", "Chrome Extension", "JavaScript"],
+      "Undergraduate thesis (grade A) in a team of five: a Chrome extension for safer online shopping. I led its rating system: Bayesian averaging with exponential time decay, plus English and Bangla review sentiment.",
+    tags: ["Bayesian statistics", "Sentiment analysis", "OpenAI API", "Chrome Extension", "User study"],
     github: "https://github.com/isttiiak/e-commerce-extension",
     caseStudy: true,
     metrics: [
-      { value: "1yr", label: "research project" },
-      { value: "HCI", label: "domain" },
+      { value: "A", label: "thesis grade" },
+      { value: "29", label: "user-study participants" },
     ],
     year: "2024–25",
   },
@@ -93,12 +93,12 @@ export const projects: Project[] = [
     title: "Brain Stroke Classification",
     kind: "data",
     summary:
-      "Classified 43,400 clinical records under heavy class imbalance: SMOTE resampling, with 4 classifiers compared with 10-fold cross-validation.",
+      "Team course project (CSE422) on 43,400 clinical records with heavy class imbalance. My part: preprocessing, missing-value treatment and the logistic regression model; the team compared 4 classifiers with 10-fold cross-validation.",
     tags: ["Python", "Scikit-learn", "SMOTE", "Random Forest", "EDA"],
     github: "https://github.com/RejwanShafi25/Brain-stroke-analysis-and-classification--CSE422-Project",
     caseStudy: false,
     metrics: [
-      { value: "96.79%", label: "best accuracy" },
+      { value: "96.79%", label: "team best accuracy" },
       { value: "43.4K", label: "records" },
     ],
     year: "2023",

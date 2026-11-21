@@ -33,7 +33,7 @@ export const timeline: TimelineItem[] = [
     place: "BRAC University, Dhaka",
     accent: true,
     points: [
-      "Thesis: Bayesian adaptive rating system for e-commerce with AI sentiment analysis, commended by supervisor for statistical rigour",
+      "Thesis (grade A): led the Bayesian rating system of a team-built e-commerce Chrome extension, evaluated in a 29-participant user study",
       "imaGen Ventures Youth Challenge 2024 national finalist (UNICEF & JAAGO)",
       "6 credits from Bard College at Simon's Rock (international exchange)",
       "Executive member, BRACU Robotics Club",

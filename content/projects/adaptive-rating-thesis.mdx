@@ -1,47 +1,52 @@
 ---
 title: "Adaptive Rating System for E-commerce"
-description: "Undergraduate thesis: statistically robust product ratings using Bayesian averaging, exponential time decay, and AI sentiment extraction, deployed as a Chrome extension."
+description: "Undergraduate thesis (grade A): a Chrome extension that applies behavioral economics to safer online shopping, built around a Bayesian, time-decayed rating system and English and Bangla review sentiment."
 year: "2024–2025"
-role: "Researcher, all data work (EDA, hypothesis testing, algorithm design, validation)"
-stack: ["Bayesian statistics", "Python", "Sentiment analysis", "JavaScript", "Chrome Extension APIs"]
+role: "Rating-system lead in a team of five"
+stack: ["Bayesian statistics", "Sentiment analysis", "OpenAI API", "JavaScript", "Chrome Extension APIs"]
 github: "https://github.com/isttiiak/e-commerce-extension"
 order: 4
 architecture:
   - layer: "Rating algorithm"
-    tech: "Bayesian averaging + exponential time decay"
-  - layer: "NLP"
-    tech: "AI sentiment extraction from review text"
-  - layer: "Analysis & validation"
-    tech: "Python: EDA, hypothesis testing"
+    tech: "Bayesian average + exponential time decay"
+  - layer: "Review sentiment"
+    tech: "OpenAI API pipeline, English and Bangla"
   - layer: "Delivery"
-    tech: "Chrome extension (JavaScript) on live product pages"
+    tech: "Chrome extension on live product pages"
+  - layer: "Evaluation"
+    tech: "29-participant user study: chi-square tests, System Usability Scale"
   - layer: "Context"
-    tech: "BRAC University HCI research, supervised thesis"
+    tech: "BRAC University CSE thesis, supervised by Prof. Farida Chowdhury"
 ---
 
 ## The problem
 
-A five-star product with 3 reviews outranks a 4.7-star product with 2,000 reviews on most e-commerce platforms. Raw average ratings are trivially manipulated, ignore recency, and throw away the richest signal available: what reviewers actually wrote.
+Online shopping runs on information asymmetry: sellers know far more about a product than buyers do, and the main signal buyers get, the star rating, is easy to game. A five-star product with 3 reviews outranks a 4.7-star product with 2,000. Raw averages ignore recency and throw away the richest signal available: what reviewers actually wrote.
 
-My undergraduate thesis (supervised by Dr. Farida Chowdhury, Professor, CSE, BRAC University) tackled this as an HCI + applied data science problem.
+My undergraduate thesis, **"A User-Centric Approach to Ensure Safe Browsing in E-commerce through Behavioral Economics"** (BRAC University, Fall 2024 to February 2025, supervised by Prof. Farida Chowdhury, PhD), tackled this with a Chrome extension built by a team of five. I took primary ownership of the rating system.
 
 ## Key features
 
-- **Bayesian averaging**: every product's score is pulled toward the category prior with strength inversely proportional to review count: a 5.0 from 3 reviews shrinks hard, a 4.7 from 2,000 barely moves
-- **Exponential time decay**: recent reviews weigh more, so a product that declined two years ago can't coast on old praise; decay rate tuned by hypothesis testing against held-out rating trajectories
-- **AI sentiment extraction**: review text adjusts the rating weights dynamically, so a glowing 4-star and a bitter 4-star stop counting the same
-- **Chrome extension delivery**: recomputes the robust score directly on live e-commerce product pages, next to the platform's naive one
+- **Bayesian averaging**: every product's score is pulled toward a prior, with a strength that shrinks as reviews accumulate: a 5.0 from 3 reviews moves a lot, a 4.7 from 2,000 barely moves
+- **Exponential time decay**: recent reviews weigh more, so a product that has declined can't coast on old praise
+- **Review sentiment in two languages**: an OpenAI API pipeline extracts sentiment from English and Bangla reviews
+- **Chrome extension delivery**: shows the adjusted rating directly on live e-commerce product pages, next to the platform's own
+
+## Results
+
+- Thesis graded **A (4.00)**
+- The extension was evaluated in a **29-participant user study**, using chi-square tests and the System Usability Scale (SUS)
 
 ## Challenges
 
-**Tuning without ground truth.** There is no "correct" product score to validate against. The decay rate and prior strength were tuned through hypothesis testing on held-out rating trajectories, checking whether the adaptive score predicted future rating direction better than the naive average.
+**No ground truth to check against.** There is no "correct" score for a product. Design decisions were grounded in the research literature, and the approach was benchmarked against established real-world rating systems.
 
-**From paper to product.** Research code assumes clean inputs; a Chrome extension gets whatever the DOM serves. Making the algorithm run on scraped, incomplete review data from real product pages forced defensive handling the thesis alone never would have.
+**From paper to product.** Research code assumes clean inputs; a Chrome extension gets whatever the page serves. Running the rating system on incomplete review data from real product pages forced defensive handling the thesis alone never would have.
 
 ## What I learned
 
 - **Bayesian shrinkage** as a practical tool, not just theory; priors are how you make small-sample data behave
-- Designing validation when no labeled answer exists: the hardest and most transferable statistics lesson of the project
-- Shipping research as a usable artifact doubles its value: the extension made the thesis legible to non-academics
+- Evaluating with people, not only with numbers: a usability study tells you whether a tool helps, which no offline metric can
+- Shipping research as a usable artifact makes it legible to people outside academia
 
-The supervisor explicitly commended the originality and statistical rigour of the rating system contribution.
+The supervisor commended the originality and statistical rigour of the rating system contribution.
