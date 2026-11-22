@@ -35,7 +35,7 @@ export const timeline: TimelineItem[] = [
     points: [
       "Thesis (grade A): led the Bayesian rating system of a team-built e-commerce Chrome extension, evaluated in a 29-participant user study",
       "imaGen Ventures Youth Challenge 2024 national finalist (UNICEF & JAAGO)",
-      "6 credits from Bard College at Simon's Rock (international exchange)",
+      "6 transfer credits from Bard College at Simon's Rock",
       "Executive member, BRACU Robotics Club",
     ],
   },
